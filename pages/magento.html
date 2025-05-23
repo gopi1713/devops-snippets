@@ -8,36 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="no-gap">
-    <header>
-        <h1>DevOps Commands Hub</h1>
-        <p>Magento Commands</p>
-    </header>
-    
     <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>Categories</h2>
-                <button id="toggleSidebar" class="toggle-sidebar-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="../index" class="sidebar-item"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="docker" class="sidebar-item"><i class="fab fa-docker"></i> Docker</a></li>
-                    <li><a href="git" class="sidebar-item"><i class="fab fa-git-alt"></i> Git</a></li>
-                    <li><a href="magento" class="sidebar-item active"><i class="fas fa-shopping-cart"></i> Magento</a></li>
-                    <li><a href="mysql" class="sidebar-item"><i class="fas fa-database"></i> MySQL</a></li>
-                    <li><a href="opensearch" class="sidebar-item"><i class="fas fa-search"></i> OpenSearch</a></li>
-                    <li><a href="redis" class="sidebar-item"><i class="fas fa-server"></i> Redis</a></li>
-                    <li><a href="packages" class="sidebar-item"><i class="fas fa-box"></i> Packages</a></li>
-                </ul>
-            </nav>
-        </aside>
+        <div data-include="sidebar" data-root-path=".." data-active-page="MAGENTO"></div>
         
         <main>
-            <h1 class="page-title"><i class="fas fa-shopping-cart"></i> Magento Commands</h1>
-            
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Search Magento commands...">
             </div>
@@ -98,6 +72,7 @@
         <p>DevOps Commands Hub | <a href="https://github.com/gopi1713/devops-snippets">GitHub Repository</a> | <a href="https://gopi1713.github.io/devops-snippets/">Visit Live Site</a></p>
     </footer>
 
+    <script src="../js/include.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>
