@@ -5,10 +5,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebarNav = document.querySelector('.sidebar-nav');
     const sidebarLinks = document.querySelectorAll('.sidebar-item');
     
+    // Initially hide all categories except the first one
+    const categories = document.querySelectorAll('.category');
+    categories.forEach((category, index) => {
+        if (index > 0) {
+            category.style.display = 'none';
+        }
+    });
+    
+    // Set the first sidebar item as active
+    if (sidebarLinks.length > 0) {
+        sidebarLinks[0].classList.add('active');
+    }
+    
     // Search functionality
     searchInput.addEventListener('keyup', function() {
         const searchTerm = this.value.toLowerCase();
         const commands = document.querySelectorAll('.command');
+        
+        // Show all categories when searching
+        categories.forEach(category => {
+            category.style.display = 'block';
+        });
         
         commands.forEach(function(command) {
             const title = command.querySelector('h3').textContent.toLowerCase();
@@ -40,55 +58,44 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebarNav.classList.toggle('show');
     });
     
-    // Handle sidebar navigation
+    // Handle sidebar navigation to show only selected category
     sidebarLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
             // On mobile, hide the sidebar after clicking a link
             if (window.innerWidth < 992) {
                 sidebarNav.classList.remove('show');
             }
             
-            // Smooth scroll to the section
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
+            // Clear search input when switching categories
+            searchInput.value = '';
             
+            // Get the target category ID
+            const targetId = this.getAttribute('href').substring(1);
+            
+            // Hide all categories
+            categories.forEach(category => {
+                category.style.display = 'none';
+            });
+            
+            // Show only the selected category
+            const targetElement = document.getElementById(targetId);
             if (targetElement) {
-                e.preventDefault();
+                targetElement.style.display = 'block';
+                
+                // Scroll to the top of the category
                 window.scrollTo({
                     top: targetElement.offsetTop - 20,
                     behavior: 'smooth'
                 });
             }
-        });
-    });
-    
-    // Highlight active section in sidebar based on scroll position
-    window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
-        
-        document.querySelectorAll('.category').forEach(function(section) {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
             
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                document.querySelectorAll('.sidebar-item').forEach(function(item) {
-                    item.classList.remove('active');
-                    if (item.getAttribute('href') === '#' + sectionId) {
-                        item.classList.add('active');
-                    }
-                });
-            }
-        });
-    });
-    
-    // Add active class to sidebar items
-    document.querySelector('.sidebar-nav').addEventListener('click', function(e) {
-        if (e.target.classList.contains('sidebar-item')) {
-            document.querySelectorAll('.sidebar-item').forEach(function(item) {
+            // Update active class on sidebar items
+            sidebarLinks.forEach(item => {
                 item.classList.remove('active');
             });
-            e.target.classList.add('active');
-        }
+            this.classList.add('active');
+        });
     });
 });
