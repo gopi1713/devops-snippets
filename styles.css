@@ -16,6 +16,12 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: opacity 0.3s ease-in;
+}
+
+/* Loading state */
+body.loading {
+    opacity: 0;
 }
 
 /* Add transition delay to prevent initial animation */
@@ -249,6 +255,12 @@ main {
     transition: margin-left 0.3s ease;
     overflow-y: auto; /* Only main scrolls */
     height: 100vh; /* Full height without footer */
+    padding: 1.5rem;
+}
+
+/* Handle main content margin when sidebar is collapsed */
+#mainSidebar.collapsed ~ main {
+    margin-left: 50px;
 }
 
 .home-content {

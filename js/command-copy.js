@@ -53,14 +53,19 @@ function initializeCommandCopy() {
     }, 100);
 }
 
-// Re-initialize when DOM changes (important for dynamic content)
+// Add a mutation observer to watch for new command elements
 const observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-        if (mutation.addedNodes.length > 0) {
-            initializeCommandCopy();
-        }
-    });
+    // When DOM changes, check if we need to add copy buttons
+    const commandsWithoutButtons = document.querySelectorAll('.command:not(:has(.copy-button))');
+    if (commandsWithoutButtons.length > 0) {
+        initializeCommandCopy();
+    }
 });
 
-// Start observing the document
-observer.observe(document.body, { childList: true, subtree: true });
+// Start observing once DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    observer.observe(document.body, { 
+        childList: true, 
+        subtree: true 
+    });
+});
