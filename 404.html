@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - DevOps Commands Hub</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script>
+        // Attempt to redirect non-html URLs to HTML
+        var path = window.location.pathname;
+        if (!path.endsWith('.html') && path !== '/' && !path.endsWith('/')) {
+            // Check if we need to add .html
+            var xhr = new XMLHttpRequest();
+            xhr.open('HEAD', path + '.html', true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        window.location.href = path + '.html';
+                    }
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+<body class="no-gap">
+    <header>
+        <h1>DevOps Commands Hub</h1>
+        <p>Page Not Found</p>
+    </header>
+    
+    <div class="container">
+        <main style="text-align: center; padding: 4rem 2rem;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 5rem; color: #e74c3c; margin-bottom: 2rem;"></i>
+            <h1 class="page-title">404 - Page Not Found</h1>
+            <p style="margin-bottom: 2rem;">Sorry, the page you're looking for doesn't exist.</p>
+            <a href="/" class="button">Return to Home</a>
+        </main>
+    </div>
+    
+    <footer>
+        <p>DevOps Commands Hub | <a href="https://github.com/gopi1713/devops-snippets">GitHub Repository</a> | <a href="https://gopi1713.github.io/devops-snippets/">Visit Live Site</a></p>
+    </footer>
+</body>
+</html>
