@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevOps Commands Hub</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <header>
@@ -12,61 +13,167 @@
         <p>A collection of useful commands for DevOps engineers</p>
     </header>
     
-    <main>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search commands...">
-        </div>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Categories</h2>
+                <button id="toggleSidebar" class="toggle-sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#docker" class="sidebar-item"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="#kubernetes" class="sidebar-item"><i class="fas fa-dharmachakra"></i> Kubernetes</a></li>
+                    <li><a href="#git" class="sidebar-item"><i class="fab fa-git-alt"></i> Git</a></li>
+                    <li><a href="#magento" class="sidebar-item"><i class="fas fa-shopping-cart"></i> Magento</a></li>
+                    <li><a href="#mysql" class="sidebar-item"><i class="fas fa-database"></i> MySQL</a></li>
+                    <li><a href="#opensearch" class="sidebar-item"><i class="fas fa-search"></i> OpenSearch</a></li>
+                    <li><a href="#redis" class="sidebar-item"><i class="fas fa-server"></i> Redis</a></li>
+                </ul>
+            </nav>
+        </aside>
         
-        <div class="categories">
-            <div class="category" id="docker">
-                <h2>Docker</h2>
-                <div class="command-list">
-                    <div class="command">
-                        <h3>List all containers</h3>
-                        <pre><code>docker ps -a</code></pre>
-                        <p>Shows all containers, including stopped ones</p>
-                    </div>
-                    <div class="command">
-                        <h3>Build an image</h3>
-                        <pre><code>docker build -t image-name:tag .</code></pre>
-                        <p>Builds a Docker image from a Dockerfile in the current directory</p>
-                    </div>
-                </div>
+        <main>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search commands...">
             </div>
             
-            <div class="category" id="kubernetes">
-                <h2>Kubernetes</h2>
-                <div class="command-list">
-                    <div class="command">
-                        <h3>Get all pods</h3>
-                        <pre><code>kubectl get pods</code></pre>
-                        <p>Lists all pods in the current namespace</p>
+            <div class="categories">
+                <div class="category" id="docker">
+                    <h2>Docker</h2>
+                    <div class="command-list">
+                        <div class="command">
+                            <h3>List all containers</h3>
+                            <pre><code>docker ps -a</code></pre>
+                            <p>Shows all containers, including stopped ones</p>
+                        </div>
+                        <div class="command">
+                            <h3>Build an image</h3>
+                            <pre><code>docker build -t image-name:tag .</code></pre>
+                            <p>Builds a Docker image from a Dockerfile in the current directory</p>
+                        </div>
                     </div>
-                    <div class="command">
-                        <h3>Describe pod</h3>
-                        <pre><code>kubectl describe pod [pod-name]</code></pre>
-                        <p>Shows detailed information about a pod</p>
+                </div>
+                
+                <div class="category" id="kubernetes">
+                    <h2>Kubernetes</h2>
+                    <div class="command-list">
+                        <div class="command">
+                            <h3>Get all pods</h3>
+                            <pre><code>kubectl get pods</code></pre>
+                            <p>Lists all pods in the current namespace</p>
+                        </div>
+                        <div class="command">
+                            <h3>Describe pod</h3>
+                            <pre><code>kubectl describe pod [pod-name]</code></pre>
+                            <p>Shows detailed information about a pod</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category" id="git">
+                    <h2>Git</h2>
+                    <div class="command-list">
+                        <div class="command">
+                            <h3>Create and switch to new branch</h3>
+                            <pre><code>git checkout -b branch-name</code></pre>
+                            <p>Creates a new branch and switches to it</p>
+                        </div>
+                        <div class="command">
+                            <h3>Push to remote</h3>
+                            <pre><code>git push origin branch-name</code></pre>
+                            <p>Pushes local commits to the remote repository</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category" id="magento">
+                    <h2>Magento</h2>
+                    <div class="command-list">
+                        <div class="command">
+                            <h3>Cache Flush</h3>
+                            <pre><code>php bin/magento cache:flush</code></pre>
+                            <p>Flushes Magento cache storage</p>
+                        </div>
+                        <div class="command">
+                            <h3>Reindex</h3>
+                            <pre><code>php bin/magento indexer:reindex</code></pre>
+                            <p>Reindexes all Magento indexes</p>
+                        </div>
+                        <div class="command">
+                            <h3>Deploy Static Content</h3>
+                            <pre><code>php bin/magento setup:static-content:deploy -f</code></pre>
+                            <p>Deploys static view files</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category" id="mysql">
+                    <h2>MySQL</h2>
+                    <div class="command-list">
+                        <div class="command">
+                            <h3>Connect to MySQL</h3>
+                            <pre><code>mysql -u username -p database_name</code></pre>
+                            <p>Connect to a MySQL database</p>
+                        </div>
+                        <div class="command">
+                            <h3>Export Database</h3>
+                            <pre><code>mysqldump -u username -p database_name > backup.sql</code></pre>
+                            <p>Export a database to an SQL file</p>
+                        </div>
+                        <div class="command">
+                            <h3>Import Database</h3>
+                            <pre><code>mysql -u username -p database_name < backup.sql</code></pre>
+                            <p>Import a database from an SQL file</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category" id="opensearch">
+                    <h2>OpenSearch</h2>
+                    <div class="command-list">
+                        <div class="command">
+                            <h3>Check Cluster Health</h3>
+                            <pre><code>curl -XGET "http://localhost:9200/_cluster/health?pretty"</code></pre>
+                            <p>Retrieves OpenSearch cluster health status</p>
+                        </div>
+                        <div class="command">
+                            <h3>View Indices</h3>
+                            <pre><code>curl -XGET "http://localhost:9200/_cat/indices?v"</code></pre>
+                            <p>Lists all indices in the cluster</p>
+                        </div>
+                        <div class="command">
+                            <h3>Delete Index</h3>
+                            <pre><code>curl -XDELETE "http://localhost:9200/index_name"</code></pre>
+                            <p>Deletes an index</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="category" id="redis">
+                    <h2>Redis</h2>
+                    <div class="command-list">
+                        <div class="command">
+                            <h3>Connect to Redis CLI</h3>
+                            <pre><code>redis-cli</code></pre>
+                            <p>Start the Redis command line interface</p>
+                        </div>
+                        <div class="command">
+                            <h3>Flush All Keys</h3>
+                            <pre><code>redis-cli FLUSHALL</code></pre>
+                            <p>Delete all keys from all Redis databases</p>
+                        </div>
+                        <div class="command">
+                            <h3>Monitor Redis Commands</h3>
+                            <pre><code>redis-cli MONITOR</code></pre>
+                            <p>Stream all commands processed by the Redis server in real-time</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="category" id="git">
-                <h2>Git</h2>
-                <div class="command-list">
-                    <div class="command">
-                        <h3>Create and switch to new branch</h3>
-                        <pre><code>git checkout -b branch-name</code></pre>
-                        <p>Creates a new branch and switches to it</p>
-                    </div>
-                    <div class="command">
-                        <h3>Push to remote</h3>
-                        <pre><code>git push origin branch-name</code></pre>
-                        <p>Pushes local commits to the remote repository</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+        </main>
+    </div>
     
     <footer>
         <p>DevOps Commands Hub | <a href="https://github.com/yourusername/devops-snippets">GitHub Repository</a></p>
