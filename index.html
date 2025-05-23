@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Commands Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>DevOps Commands Hub</h1>
+        <p>A collection of useful commands for DevOps engineers</p>
+    </header>
+    
+    <main>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search commands...">
+        </div>
+        
+        <div class="categories">
+            <div class="category" id="docker">
+                <h2>Docker</h2>
+                <div class="command-list">
+                    <div class="command">
+                        <h3>List all containers</h3>
+                        <pre><code>docker ps -a</code></pre>
+                        <p>Shows all containers, including stopped ones</p>
+                    </div>
+                    <div class="command">
+                        <h3>Build an image</h3>
+                        <pre><code>docker build -t image-name:tag .</code></pre>
+                        <p>Builds a Docker image from a Dockerfile in the current directory</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category" id="kubernetes">
+                <h2>Kubernetes</h2>
+                <div class="command-list">
+                    <div class="command">
+                        <h3>Get all pods</h3>
+                        <pre><code>kubectl get pods</code></pre>
+                        <p>Lists all pods in the current namespace</p>
+                    </div>
+                    <div class="command">
+                        <h3>Describe pod</h3>
+                        <pre><code>kubectl describe pod [pod-name]</code></pre>
+                        <p>Shows detailed information about a pod</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category" id="git">
+                <h2>Git</h2>
+                <div class="command-list">
+                    <div class="command">
+                        <h3>Create and switch to new branch</h3>
+                        <pre><code>git checkout -b branch-name</code></pre>
+                        <p>Creates a new branch and switches to it</p>
+                    </div>
+                    <div class="command">
+                        <h3>Push to remote</h3>
+                        <pre><code>git push origin branch-name</code></pre>
+                        <p>Pushes local commits to the remote repository</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>DevOps Commands Hub | <a href="https://github.com/yourusername/devops-snippets">GitHub Repository</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
