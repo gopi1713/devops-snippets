@@ -50,9 +50,35 @@
                 </div>
                 
                 <div class="command">
-                    <h3>Export Database</h3>
+                    <h3>Backup Database with MySQLDump</h3>
                     <pre><code>mysqldump -u username -p database_name > backup.sql</code></pre>
                     <p>Export a database to an SQL file</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Backup Database with MyDumper</h3>
+                    <pre><code>export MYSQL_PWD='password'
+mydumper -h 127.0.0.1 -u username -B database_name -o /path/to/backup/directory -t 6 --compress --verbose 3</code></pre>
+                    <p>Backup a MySQL database using MyDumper with 6 threads, compression and verbose logging</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Restore Database with MyLoader</h3>
+                    <pre><code>myloader -h 127.0.0.1 -u username --password='password' -B database_name -d /path/to/backup/directory -t 8 --verbose 3</code></pre>
+                    <p>Restore a MySQL database using MyLoader with 8 threads and verbose logging</p>
+                </div>
+                
+                <div class="command">
+                    <h3>MyDumper Example (Real-world)</h3>
+                    <pre><code>export MYSQL_PWD='dbpassword'
+mydumper -h 127.0.0.1 -u dbuser -B my_database -o /home/user/backups/my_database_backup -t 6 --compress --verbose 3</code></pre>
+                    <p>Example of a real-world MyDumper backup command with password in environment variable</p>
+                </div>
+                
+                <div class="command">
+                    <h3>MyLoader Example (Real-world)</h3>
+                    <pre><code>myloader -h 127.0.0.1 -u dbuser --password='dbpassword' -B my_database -d /home/user/backups/my_database_backup -t 8 --verbose 3</code></pre>
+                    <p>Example of a real-world MyLoader restore command</p>
                 </div>
                 
                 <div class="command">
