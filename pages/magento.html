@@ -65,6 +65,102 @@
                     <pre><code>php bin/magento module:status</code></pre>
                     <p>Displays the status of modules</p>
                 </div>
+                
+                <div class="command">
+                    <h3>Enable Maintenance Mode</h3>
+                    <pre><code>php bin/magento maintenance:enable</code></pre>
+                    <p>Puts the application into maintenance mode</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Disable Maintenance Mode</h3>
+                    <pre><code>php bin/magento maintenance:disable</code></pre>
+                    <p>Takes the application out of maintenance mode</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Clean Generated Code</h3>
+                    <pre><code>rm -rf generated/code/* generated/metadata/*</code></pre>
+                    <p>Manually removes generated code and metadata</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Clear View Files Cache</h3>
+                    <pre><code>php bin/magento cache:clean layout block_html full_page</code></pre>
+                    <p>Cleans layout, block HTML, and page cache</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Run Cron</h3>
+                    <pre><code>php bin/magento cron:run</code></pre>
+                    <p>Runs Magento cron jobs</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Reset Admin Password</h3>
+                    <pre><code>php bin/magento admin:user:create --admin-user=username --admin-password=password --admin-email=email@example.com --admin-firstname=FirstName --admin-lastname=LastName</code></pre>
+                    <p>Creates a new admin user or resets password if user exists</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show Configuration Value</h3>
+                    <pre><code>php bin/magento config:show path/to/config</code></pre>
+                    <p>Shows the configuration value for a specific path</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Set Configuration Value</h3>
+                    <pre><code>php bin/magento config:set path/to/config value</code></pre>
+                    <p>Sets the configuration value for a specific path</p>
+                </div>
+                
+                <div class="command">
+                    <h3>List All Configuration Paths</h3>
+                    <pre><code>php bin/magento config:show --all</code></pre>
+                    <p>Lists all available configuration paths</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Enable Display Errors</h3>
+                    <pre><code>php bin/magento deploy:mode:set developer</code></pre>
+                    <p>Sets Magento to developer mode for debugging</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Set Production Mode</h3>
+                    <pre><code>php bin/magento deploy:mode:set production</code></pre>
+                    <p>Sets Magento to production mode for best performance</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Check Current Mode</h3>
+                    <pre><code>php bin/magento deploy:mode:show</code></pre>
+                    <p>Displays the current deployment mode</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Theme Deployment</h3>
+                    <pre><code>php bin/magento setup:static-content:deploy -f --theme=Frontend/vendor/theme</code></pre>
+                    <p>Deploys static content for a specific theme</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Clean Media Cache</h3>
+                    <pre><code>php bin/magento catalog:images:resize</code></pre>
+                    <p>Resizes catalog images</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Run Setup Upgrade</h3>
+                    <pre><code>php bin/magento setup:upgrade --keep-generated</code></pre>
+                    <p>Upgrades database schema without removing generated files</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Deploy Static Content for Locales</h3>
+                    <pre><code>php bin/magento setup:static-content:deploy en_US fr_FR de_DE -f</code></pre>
+                    <p>Deploys static view files for specific locales</p>
+                </div>
             </div>
         </main>
     </div>

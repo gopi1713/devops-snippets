@@ -72,6 +72,137 @@
 }'</code></pre>
                     <p>Performs a search query using JSON format</p>
                 </div>
+                
+                <div class="command">
+                    <h3>Create Index with Mappings</h3>
+                    <pre><code>curl -XPUT "http://localhost:9200/index_name" -H 'Content-Type: application/json' -d'
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 2
+  },
+  "mappings": {
+    "properties": {
+      "field1": { "type": "text" },
+      "field2": { "type": "keyword" },
+      "field3": { "type": "date" }
+    }
+  }
+}'</code></pre>
+                    <p>Creates an index with custom settings and mappings</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Index Statistics</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/index_name/_stats?pretty"</code></pre>
+                    <p>Shows detailed statistics for a specific index</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Shard Allocation</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/_cat/shards?v"</code></pre>
+                    <p>Shows the allocation of shards across nodes</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Node Tasks</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/_tasks?pretty"</code></pre>
+                    <p>Shows currently executing tasks on nodes</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Force Merge Index</h3>
+                    <pre><code>curl -XPOST "http://localhost:9200/index_name/_forcemerge?max_num_segments=1"</code></pre>
+                    <p>Forces merging of an index to optimize it</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Update Index Settings</h3>
+                    <pre><code>curl -XPUT "http://localhost:9200/index_name/_settings" -H 'Content-Type: application/json' -d'
+{
+  "index": {
+    "number_of_replicas": 1,
+    "refresh_interval": "30s"
+  }
+}'</code></pre>
+                    <p>Updates settings for an existing index</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Index Disk Usage</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/_cat/indices?v&h=index,store.size"</code></pre>
+                    <p>Shows disk usage for each index</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Cluster Allocation Explained</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/_cluster/allocation/explain?pretty"</code></pre>
+                    <p>Explains shard allocation decisions for better debugging</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Get Index Mapping</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/index_name/_mapping?pretty"</code></pre>
+                    <p>Shows the mapping for a specific index</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Reindex Data</h3>
+                    <pre><code>curl -XPOST "http://localhost:9200/_reindex" -H 'Content-Type: application/json' -d'
+{
+  "source": {
+    "index": "source_index"
+  },
+  "dest": {
+    "index": "destination_index"
+  }
+}'</code></pre>
+                    <p>Copies documents from one index to another</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Snapshot Repository</h3>
+                    <pre><code>curl -XPUT "http://localhost:9200/_snapshot/backup_repository" -H 'Content-Type: application/json' -d'
+{
+  "type": "fs",
+  "settings": {
+    "location": "/path/to/backup/directory"
+  }
+}'</code></pre>
+                    <p>Registers a snapshot repository for backups</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Create Snapshot</h3>
+                    <pre><code>curl -XPUT "http://localhost:9200/_snapshot/backup_repository/snapshot_name" -H 'Content-Type: application/json' -d'
+{
+  "indices": "index1,index2",
+  "ignore_unavailable": true
+}'</code></pre>
+                    <p>Creates a snapshot of specific indices</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Restore Snapshot</h3>
+                    <pre><code>curl -XPOST "http://localhost:9200/_snapshot/backup_repository/snapshot_name/_restore" -H 'Content-Type: application/json' -d'
+{
+  "indices": "index1,index2",
+  "ignore_unavailable": true
+}'</code></pre>
+                    <p>Restores indices from a snapshot</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Check Index Existence</h3>
+                    <pre><code>curl -I "http://localhost:9200/index_name"</code></pre>
+                    <p>Checks if an index exists (returns HTTP 200 if it does, 404 if not)</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Flush Index</h3>
+                    <pre><code>curl -XPOST "http://localhost:9200/index_name/_flush"</code></pre>
+                    <p>Flushes an index, ensuring data is persisted to disk</p>
+                </div>
             </div>
         </main>
     </div>

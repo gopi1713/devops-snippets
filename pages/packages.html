@@ -43,51 +43,95 @@
                 </div>
                 
                 <div class="command">
-                    <h3>Install Apache Web Server</h3>
-                    <pre><code>sudo apt install apache2</code></pre>
-                    <p>Installs Apache HTTP server on Ubuntu</p>
+                    <h3>Install PHP 8.1 for Magento</h3>
+                    <pre><code>sudo apt install software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt update
+sudo apt install php8.1 php8.1-cli php8.1-fpm php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath php8.1-intl php8.1-soap php8.1-xsl php8.1-sockets</code></pre>
+                    <p>Installs PHP 8.1 with all extensions required for Magento</p>
                 </div>
                 
                 <div class="command">
-                    <h3>Install Nginx Web Server</h3>
-                    <pre><code>sudo apt install nginx</code></pre>
-                    <p>Installs Nginx web server on Ubuntu</p>
+                    <h3>Install PHP 7.4 for Magento</h3>
+                    <pre><code>sudo apt install software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt update
+sudo apt install php7.4 php7.4-cli php7.4-fpm php7.4-common php7.4-mysql php7.4-zip php7.4-gd php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath php7.4-intl php7.4-soap php7.4-xsl php7.4-sockets</code></pre>
+                    <p>Installs PHP 7.4 with all extensions required for Magento</p>
                 </div>
                 
                 <div class="command">
-                    <h3>Install Redis Server</h3>
-                    <pre><code>sudo apt install redis-server</code></pre>
-                    <p>Installs Redis server on Ubuntu</p>
+                    <h3>Install Elasticsearch 7.x for Magento</h3>
+                    <pre><code>wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+sudo apt install apt-transport-https
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+sudo apt update
+sudo apt install elasticsearch</code></pre>
+                    <p>Installs Elasticsearch 7.x required for Magento 2.4.x</p>
                 </div>
                 
                 <div class="command">
-                    <h3>Install PHP and Common Extensions</h3>
-                    <pre><code>sudo apt install php php-cli php-fpm php-mysql php-curl php-gd php-mbstring php-xml php-zip</code></pre>
-                    <p>Installs PHP with commonly used extensions</p>
+                    <h3>Install OpenSearch for Magento</h3>
+                    <pre><code>wget -qO - https://artifacts.opensearch.org/publickeys/opensearch.pgp | sudo apt-key add -
+echo "deb https://artifacts.opensearch.org/releases/bundle/opensearch/1.x/apt stable main" | sudo tee /etc/apt/sources.list.d/opensearch-1.x.list
+sudo apt update
+sudo apt install opensearch</code></pre>
+                    <p>Installs OpenSearch for Magento 2.4.4+</p>
                 </div>
                 
                 <div class="command">
-                    <h3>Install Git</h3>
-                    <pre><code>sudo apt install git</code></pre>
-                    <p>Installs Git version control system</p>
+                    <h3>Install Composer 2 (for Magento)</h3>
+                    <pre><code>curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer --version=2.5.4</code></pre>
+                    <p>Installs Composer 2.5.4, easily adjustable to other versions for Magento compatibility</p>
                 </div>
                 
                 <div class="command">
-                    <h3>Install OpenSearch Dependencies</h3>
-                    <pre><code>sudo apt install apt-transport-https ca-certificates gnupg2</code></pre>
-                    <p>Installs dependencies required for OpenSearch</p>
+                    <h3>Install Docker</h3>
+                    <pre><code>curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh ./get-docker.sh 
+sudo usermod -aG docker $USER
+newgrp docker</code></pre>
+                    <p>Installs Docker, adds current user to the docker group, and applies group changes</p>
                 </div>
                 
                 <div class="command">
-                    <h3>Install Composer (PHP Package Manager)</h3>
-                    <pre><code>curl -sS https://getcomposer.org/installer | php sudo mv composer.phar /usr/local/bin/composer</code></pre>
-                    <p>Downloads and installs Composer globally</p>
+                    <h3>Install Magento Command Line Tool</h3>
+                    <pre><code>composer global require magento/magento-cloud-cli</code></pre>
+                    <p>Installs the Magento Cloud CLI tool</p>
                 </div>
                 
                 <div class="command">
-                    <h3>Install MyDumper</h3>
-                    <pre><code>sudo apt install mydumper</code></pre>
-                    <p>Installs MyDumper, a high-performance MySQL backup tool</p>
+                    <h3>Install n98-magerun2 (Magento CLI)</h3>
+                    <pre><code>curl -O https://files.magerun.net/n98-magerun2.phar
+chmod +x n98-magerun2.phar
+sudo mv n98-magerun2.phar /usr/local/bin/n98-magerun2</code></pre>
+                    <p>Installs n98-magerun2, a powerful CLI tool for Magento 2</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Install Redis with PHP Extension</h3>
+                    <pre><code>sudo apt install redis-server php-redis</code></pre>
+                    <p>Installs Redis server with PHP extension for caching</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Install Varnish for Magento</h3>
+                    <pre><code>sudo apt install varnish</code></pre>
+                    <p>Installs Varnish Cache for Magento frontend acceleration</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Configure PHP Memory Limit for Magento</h3>
+                    <pre><code>sudo sed -i 's/memory_limit = .*/memory_limit = 2G/' /etc/php/7.4/fpm/php.ini
+sudo sed -i 's/memory_limit = .*/memory_limit = 2G/' /etc/php/7.4/cli/php.ini</code></pre>
+                    <p>Sets PHP memory limit to 2GB for Magento (adjust PHP version as needed)</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Install Nginx with Magento Config</h3>
+                    <pre><code>sudo apt install nginx
+sudo wget -O /etc/nginx/sites-available/magento https://raw.githubusercontent.com/magenx/Magento-nginx-config/master/magento2/sites-available/magento2.conf</code></pre>
+                    <p>Installs Nginx with a ready-to-use Magento configuration</p>
                 </div>
             </div>
         </main>

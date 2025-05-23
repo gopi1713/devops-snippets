@@ -65,6 +65,138 @@
                     <pre><code>docker exec -it container-name-or-id bash</code></pre>
                     <p>Executes an interactive bash shell inside a running container</p>
                 </div>
+                
+                <div class="command">
+                    <h3>View container logs</h3>
+                    <pre><code>docker logs -f container-name-or-id</code></pre>
+                    <p>Shows logs for a container with follow option</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Container resource usage</h3>
+                    <pre><code>docker stats</code></pre>
+                    <p>Shows live resource usage statistics for running containers</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Prune unused resources</h3>
+                    <pre><code>docker system prune -a</code></pre>
+                    <p>Removes all unused containers, networks, images and volumes</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show image history</h3>
+                    <pre><code>docker history image-name:tag</code></pre>
+                    <p>Shows the history of an image with layers information</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Inspect container</h3>
+                    <pre><code>docker inspect container-name-or-id</code></pre>
+                    <p>Returns low-level information on Docker objects</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Container diff</h3>
+                    <pre><code>docker diff container-name-or-id</code></pre>
+                    <p>Shows file system changes in the container</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Create volume</h3>
+                    <pre><code>docker volume create volume-name</code></pre>
+                    <p>Creates a volume for persistent data storage</p>
+                </div>
+                
+                <div class="command">
+                    <h3>List volumes</h3>
+                    <pre><code>docker volume ls</code></pre>
+                    <p>Lists all volumes</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Create network</h3>
+                    <pre><code>docker network create network-name</code></pre>
+                    <p>Creates a user-defined network</p>
+                </div>
+                
+                <div class="command">
+                    <h3>List networks</h3>
+                    <pre><code>docker network ls</code></pre>
+                    <p>Lists all networks</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Connect container to network</h3>
+                    <pre><code>docker network connect network-name container-name-or-id</code></pre>
+                    <p>Connects a container to a network</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Copy files to container</h3>
+                    <pre><code>docker cp /local/path/file.txt container-name-or-id:/container/path/</code></pre>
+                    <p>Copies files/folders from local filesystem to a container</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Copy files from container</h3>
+                    <pre><code>docker cp container-name-or-id:/container/path/file.txt /local/path/</code></pre>
+                    <p>Copies files/folders from a container to local filesystem</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Export container filesystem</h3>
+                    <pre><code>docker export container-name-or-id > container.tar</code></pre>
+                    <p>Exports a container's filesystem as a tar archive</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Save image</h3>
+                    <pre><code>docker save -o image.tar image-name:tag</code></pre>
+                    <p>Saves an image to a tar archive</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Load image</h3>
+                    <pre><code>docker load -i image.tar</code></pre>
+                    <p>Loads an image from a tar archive</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Tag image</h3>
+                    <pre><code>docker tag source-image:tag target-image:tag</code></pre>
+                    <p>Creates a tag TARGET_IMAGE that refers to SOURCE_IMAGE</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Push image to registry</h3>
+                    <pre><code>docker push image-name:tag</code></pre>
+                    <p>Pushes an image to a registry</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Pull image from registry</h3>
+                    <pre><code>docker pull image-name:tag</code></pre>
+                    <p>Pulls an image from a registry</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Login to registry</h3>
+                    <pre><code>docker login registry-url</code></pre>
+                    <p>Logs in to a Docker registry</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Docker compose up</h3>
+                    <pre><code>docker-compose up -d</code></pre>
+                    <p>Creates and starts containers defined in docker-compose.yml</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Docker compose down</h3>
+                    <pre><code>docker-compose down</code></pre>
+                    <p>Stops and removes containers, networks, volumes defined in docker-compose.yml</p>
+                </div>
             </div>
         </main>
     </div>

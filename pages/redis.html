@@ -65,6 +65,156 @@
                     <pre><code>redis-cli ping</code></pre>
                     <p>Checks if the server is running</p>
                 </div>
+                
+                <div class="command">
+                    <h3>Connect to Remote Redis Server</h3>
+                    <pre><code>redis-cli -h host -p port -a password</code></pre>
+                    <p>Connects to a Redis server at specified host, port with authentication</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Set Key</h3>
+                    <pre><code>SET key value</code></pre>
+                    <p>Sets the string value of a key</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Get Key</h3>
+                    <pre><code>GET key</code></pre>
+                    <p>Gets the value of a key</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Delete Key</h3>
+                    <pre><code>DEL key</code></pre>
+                    <p>Deletes a key</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Check Key Existence</h3>
+                    <pre><code>EXISTS key</code></pre>
+                    <p>Determines if key exists</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Set Expiration for Key</h3>
+                    <pre><code>EXPIRE key seconds</code></pre>
+                    <p>Sets a key's time to live in seconds</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Get Key Time to Live</h3>
+                    <pre><code>TTL key</code></pre>
+                    <p>Returns the remaining time to live of a key</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show All Keys</h3>
+                    <pre><code>KEYS pattern</code></pre>
+                    <p>Finds all keys matching the specified pattern</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Redis Info</h3>
+                    <pre><code>INFO</code></pre>
+                    <p>Shows information and statistics about the server</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Redis Memory Stats</h3>
+                    <pre><code>INFO memory</code></pre>
+                    <p>Shows memory-related information and statistics</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Redis Server Config</h3>
+                    <pre><code>CONFIG GET *</code></pre>
+                    <p>Gets the value of all configuration parameters</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Change Config</h3>
+                    <pre><code>CONFIG SET parameter value</code></pre>
+                    <p>Sets a configuration parameter to the given value</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Increment Value</h3>
+                    <pre><code>INCR key</code></pre>
+                    <p>Increments the integer value of a key by one</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Decrement Value</h3>
+                    <pre><code>DECR key</code></pre>
+                    <p>Decrements the integer value of a key by one</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Hash Set</h3>
+                    <pre><code>HSET key field value</code></pre>
+                    <p>Sets field in the hash stored at key to value</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Hash Get</h3>
+                    <pre><code>HGET key field</code></pre>
+                    <p>Gets the value of a hash field</p>
+                </div>
+                
+                <div class="command">
+                    <h3>List Push</h3>
+                    <pre><code>LPUSH key value [value ...]</code></pre>
+                    <p>Inserts values at the head of a list</p>
+                </div>
+                
+                <div class="command">
+                    <h3>List Range</h3>
+                    <pre><code>LRANGE key start stop</code></pre>
+                    <p>Gets elements from a list within the specified range</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Set Add</h3>
+                    <pre><code>SADD key member [member ...]</code></pre>
+                    <p>Adds members to a set</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Set Members</h3>
+                    <pre><code>SMEMBERS key</code></pre>
+                    <p>Returns all members of a set</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Sorted Set Add</h3>
+                    <pre><code>ZADD key score member</code></pre>
+                    <p>Adds a member with score to a sorted set</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Sorted Set Range</h3>
+                    <pre><code>ZRANGE key start stop [WITHSCORES]</code></pre>
+                    <p>Returns elements in a sorted set within a range</p>
+                </div>
+                
+                <div class="command">
+                    <h3>DB Size</h3>
+                    <pre><code>DBSIZE</code></pre>
+                    <p>Returns the number of keys in the current database</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Slow Log</h3>
+                    <pre><code>SLOWLOG GET [count]</code></pre>
+                    <p>Shows the slow log entries</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Client List</h3>
+                    <pre><code>CLIENT LIST</code></pre>
+                    <p>Returns information and statistics about client connections</p>
+                </div>
             </div>
         </main>
     </div>

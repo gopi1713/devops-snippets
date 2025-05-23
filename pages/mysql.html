@@ -91,6 +91,140 @@ mydumper -h 127.0.0.1 -u dbuser -B my_database -o /home/user/backups/my_database
                     <pre><code>CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';</code></pre>
                     <p>Creates a new MySQL user</p>
                 </div>
+                
+                <div class="command">
+                    <h3>Grant Permissions</h3>
+                    <pre><code>GRANT ALL PRIVILEGES ON database_name.* TO 'username'@'localhost';</code></pre>
+                    <p>Grants all privileges for a database to a user</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Specific Grants</h3>
+                    <pre><code>GRANT SELECT, INSERT, UPDATE, DELETE ON database_name.* TO 'username'@'localhost';</code></pre>
+                    <p>Grants specific privileges for a database to a user</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Flush Privileges</h3>
+                    <pre><code>FLUSH PRIVILEGES;</code></pre>
+                    <p>Reloads the privileges from the grant tables in the MySQL database</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show User Privileges</h3>
+                    <pre><code>SHOW GRANTS FOR 'username'@'localhost';</code></pre>
+                    <p>Shows privileges granted to a user</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Database Size</h3>
+                    <pre><code>SELECT table_schema AS "Database",
+ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS "Size (MB)"
+FROM information_schema.TABLES
+GROUP BY table_schema
+ORDER BY SUM(data_length + index_length) DESC;</code></pre>
+                    <p>Shows size of all databases in MB, ordered by size</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Table Size in Database</h3>
+                    <pre><code>SELECT table_name AS "Table",
+ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)"
+FROM information_schema.TABLES
+WHERE table_schema = "database_name"
+ORDER BY (data_length + index_length) DESC;</code></pre>
+                    <p>Shows size of all tables in a specific database, ordered by size</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Top 10 Largest Tables</h3>
+                    <pre><code>SELECT CONCAT(table_schema, '.', table_name) AS "Table",
+ROUND(data_length / 1024 / 1024, 2) AS "Data Size (MB)",
+ROUND(index_length / 1024 / 1024, 2) AS "Index Size (MB)",
+ROUND((data_length + index_length) / 1024 / 1024, 2) AS "Total Size (MB)",
+table_rows AS "Rows"
+FROM information_schema.TABLES
+ORDER BY (data_length + index_length) DESC
+LIMIT 10;</code></pre>
+                    <p>Shows top 10 largest tables across all databases</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Kill Long-Running Queries</h3>
+                    <pre><code>SELECT CONCAT('KILL ', id, ';')
+FROM information_schema.processlist
+WHERE time > 300 AND command != 'Sleep';</code></pre>
+                    <p>Generates kill commands for all queries running longer than 5 minutes</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show InnoDB Status</h3>
+                    <pre><code>SHOW ENGINE INNODB STATUS\G</code></pre>
+                    <p>Shows detailed status information about the InnoDB storage engine</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Check Table</h3>
+                    <pre><code>CHECK TABLE table_name;</code></pre>
+                    <p>Checks table for errors</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Optimize Table</h3>
+                    <pre><code>OPTIMIZE TABLE table_name;</code></pre>
+                    <p>Defragments a table to reduce storage space and improve I/O efficiency</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Repair Table</h3>
+                    <pre><code>REPAIR TABLE table_name;</code></pre>
+                    <p>Repairs a possibly corrupted table</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Find Duplicate Rows</h3>
+                    <pre><code>SELECT column_name, COUNT(*) as count
+FROM table_name
+GROUP BY column_name
+HAVING COUNT(*) > 1;</code></pre>
+                    <p>Finds duplicate entries in a specific column</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Create Database with Specific Character Set</h3>
+                    <pre><code>CREATE DATABASE database_name CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;</code></pre>
+                    <p>Creates a new database with UTF8MB4 character set</p>
+                </div>
+                
+                <div class="command">
+                    <h3>List Running Processes</h3>
+                    <pre><code>SHOW PROCESSLIST;</code></pre>
+                    <p>Shows a list of active threads in MySQL</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show MySQL Variables</h3>
+                    <pre><code>SHOW VARIABLES LIKE '%variable_name%';</code></pre>
+                    <p>Shows MySQL system variables that match the pattern</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show MySQL Status</h3>
+                    <pre><code>SHOW STATUS LIKE '%status_name%';</code></pre>
+                    <p>Shows the MySQL server status variables that match the pattern</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show MySQL Error Log</h3>
+                    <pre><code>SHOW VARIABLES LIKE 'log_error';</code></pre>
+                    <p>Shows the location of the MySQL error log file</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show Table Indexes</h3>
+                    <pre><code>SHOW INDEX FROM table_name;</code></pre>
+                    <p>Shows all indexes on a table</p>
+                </div>
             </div>
         </main>
     </div>
