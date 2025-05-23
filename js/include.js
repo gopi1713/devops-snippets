@@ -14,13 +14,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.text();
             })
             .then(html => {
-                console.log('Sidebar HTML loaded successfully');
                 // Replace placeholders with actual values
                 html = html.replace(/ROOT_PATH/g, rootPath);
                 html = html.replace(`${activePage}_ACTIVE`, 'active');
                 
                 // Remove all other active placeholders
-                const pages = ['HOME', 'DOCKER', 'GIT', 'MAGENTO', 'MYSQL', 'OPENSEARCH', 'REDIS', 'PACKAGES'];
+                const pages = ['HOME', 'DOCKER', 'GIT', 'MAGENTO', 'MAGENTO_INSTALL', 'MYSQL', 'OPENSEARCH', 'REDIS', 'PACKAGES'];
                 pages.forEach(page => {
                     if (page !== activePage) {
                         html = html.replace(`${page}_ACTIVE`, '');

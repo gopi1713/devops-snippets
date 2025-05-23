@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magento Installation - DevOps Commands Hub</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/search-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="no-gap">
+    <div class="container">
+        <div data-include="sidebar" data-root-path=".." data-active-page="MAGENTO_INSTALL"></div>
+        
+        <main>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Magento installation commands...">
+            </div>
+            
+            <div class="command-list">
+                <!-- STEP 1: Database Setup -->
+                <div class="command">
+                    <h3>1. Create MySQL Database for Magento</h3>
+                    <pre><code>mysql -u root -p -e "CREATE DATABASE magento CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -u root -p -e "CREATE USER 'magento'@'localhost' IDENTIFIED BY 'magento';"
+mysql -u root -p -e "GRANT ALL PRIVILEGES ON magento.* TO 'magento'@'localhost';"
+mysql -u root -p -e "FLUSH PRIVILEGES;"</code></pre>
+                    <p>Creates a MySQL database and user for Magento</p>
+                </div>
+                
+                <!-- STEP 2: Composer Installation -->
+                <div class="command">
+                    <h3>2. Install Magento 2 via Composer</h3>
+                    <pre><code>composer create-project --repository=https://repo.magento.com/ magento/project-community-edition=2.4.6 /var/www/html/magento2</code></pre>
+                    <p>Installs Magento 2.4.6 Community Edition via Composer (adjust version as needed)</p>
+                </div>
+                
+                <!-- STEP 3: Set Permissions -->
+                <div class="command">
+                    <h3>3. Set File Permissions</h3>
+                    <pre><code>cd /var/www/html/magento2
+find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
+find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
+chown -R :www-data .
+chmod u+x bin/magento</code></pre>
+                    <p>Sets the recommended file permissions for a Magento installation</p>
+                </div>
+                
+                <!-- STEP 4: Configure Nginx -->
+                <div class="command">
+                    <h3>4. Configure Nginx for Magento</h3>
+                    <pre><code>sudo cp /etc/nginx/sites-available/magento /etc/nginx/sites-available/magento2.conf
+sudo sed -i 's/example.com/magento2.local/g' /etc/nginx/sites-available/magento2.conf
+sudo ln -s /etc/nginx/sites-available/magento2.conf /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx</code></pre>
+                    <p>Configures Nginx for the Magento installation</p>
+                </div>
+                
+                <!-- STEP 5: Basic Installation -->
+                <div class="command">
+                    <h3>5. Basic Magento Installation</h3>
+                    <pre><code>bin/magento setup:install \
+--base-url=http://magento2.local/ \
+--db-host=localhost \
+--db-name=magento \
+--db-user=magento \
+--db-password=magento \
+--admin-firstname=Admin \
+--admin-lastname=User \
+--admin-email=admin@example.com \
+--admin-user=admin \
+--admin-password=admin123 \
+--language=en_US \
+--currency=USD \
+--timezone=America/Chicago \
+--use-rewrites=1 \
+--search-engine=elasticsearch7 \
+--elasticsearch-host=localhost \
+--elasticsearch-port=9200</code></pre>
+                    <p>Installs Magento with basic configuration (adjust parameters as needed)</p>
+                </div>
+                
+                <!-- STEP 6: Advanced Installation Options -->
+                <div class="command">
+                    <h3>6. Installation with Redis</h3>
+                    <pre><code>bin/magento setup:install \
+--base-url=http://magento2.local/ \
+--db-host=localhost \
+--db-name=magento \
+--db-user=magento \
+--db-password=magento \
+--admin-firstname=Admin \
+--admin-lastname=User \
+--admin-email=admin@example.com \
+--admin-user=admin \
+--admin-password=admin123 \
+--language=en_US \
+--currency=USD \
+--timezone=America/Chicago \
+--use-rewrites=1 \
+--search-engine=elasticsearch7 \
+--elasticsearch-host=localhost \
+--elasticsearch-port=9200 \
+--session-save=redis \
+--session-save-redis-host=localhost \
+--session-save-redis-port=6379 \
+--session-save-redis-db=2 \
+--cache-backend=redis \
+--cache-backend-redis-server=localhost \
+--cache-backend-redis-port=6379 \
+--cache-backend-redis-db=0 \
+--page-cache=redis \
+--page-cache-redis-server=localhost \
+--page-cache-redis-port=6379 \
+--page-cache-redis-db=1</code></pre>
+                    <p>Installs Magento with Redis caching configuration</p>
+                </div>
+                
+                <div class="command">
+                    <h3>7. Installation with OpenSearch</h3>
+                    <pre><code>bin/magento setup:install \
+--base-url=http://magento2.local/ \
+--db-host=localhost \
+--db-name=magento \
+--db-user=magento \
+--db-password=magento \
+--admin-firstname=Admin \
+--admin-lastname=User \
+--admin-email=admin@example.com \
+--admin-user=admin \
+--admin-password=admin123 \
+--language=en_US \
+--currency=USD \
+--timezone=America/Chicago \
+--use-rewrites=1 \
+--search-engine=opensearch \
+--opensearch-host=localhost \
+--opensearch-port=9200</code></pre>
+                    <p>Installs Magento 2.4.6+ with OpenSearch configuration</p>
+                </div>
+                
+                <!-- STEP 8: Sample Data -->
+                <div class="command">
+                    <h3>8. Install Sample Data</h3>
+                    <pre><code>cd /var/www/html/magento2
+bin/magento sampledata:deploy
+bin/magento setup:upgrade
+bin/magento indexer:reindex
+bin/magento cache:flush</code></pre>
+                    <p>Installs Magento sample data (requires authentication)</p>
+                </div>
+                
+                <!-- STEP 9: Production Configuration -->
+                <div class="command">
+                    <h3>9. Configure for Production</h3>
+                    <pre><code>cd /var/www/html/magento2
+bin/magento deploy:mode:set production
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy -f
+bin/magento cache:flush</code></pre>
+                    <p>Configures Magento for production environment</p>
+                </div>
+                
+                <!-- MAINTENANCE COMMANDS -->
+                <div class="command">
+                    <h3>Upgrade Existing Magento</h3>
+                    <pre><code>cd /var/www/html/magento2
+composer update magento/product-community-edition --with-dependencies
+bin/magento setup:upgrade
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy -f
+bin/magento indexer:reindex
+bin/magento cache:flush</code></pre>
+                    <p>Upgrades an existing Magento installation</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Import Database</h3>
+                    <pre><code>mysql -u magento -p magento < magento_backup.sql</code></pre>
+                    <p>Imports a Magento database backup</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Reset Admin Password</h3>
+                    <pre><code>cd /var/www/html/magento2
+bin/magento admin:user:create --admin-user=newadmin --admin-password=newpassword --admin-email=new@example.com --admin-firstname=New --admin-lastname=Admin
+# Or to reset existing user:
+bin/magento admin:user:unlock admin
+bin/magento admin:user:create --admin-user=admin --admin-password=newpassword --admin-email=admin@example.com --admin-firstname=Admin --admin-lastname=User</code></pre>
+                    <p>Creates a new admin user or resets an existing admin user</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/include.js"></script>
+    <script src="../js/command-copy.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
