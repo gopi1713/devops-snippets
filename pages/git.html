@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Commands - DevOps Commands Hub</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="no-gap">
+    <header>
+        <h1>DevOps Commands Hub</h1>
+        <p>Git Commands</p>
+    </header>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Categories</h2>
+                <button id="toggleSidebar" class="toggle-sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../index.html" class="sidebar-item"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="docker.html" class="sidebar-item"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="git.html" class="sidebar-item active"><i class="fab fa-git-alt"></i> Git</a></li>
+                    <li><a href="magento.html" class="sidebar-item"><i class="fas fa-shopping-cart"></i> Magento</a></li>
+                    <li><a href="mysql.html" class="sidebar-item"><i class="fas fa-database"></i> MySQL</a></li>
+                    <li><a href="opensearch.html" class="sidebar-item"><i class="fas fa-search"></i> OpenSearch</a></li>
+                    <li><a href="redis.html" class="sidebar-item"><i class="fas fa-server"></i> Redis</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main>
+            <h1 class="page-title"><i class="fab fa-git-alt"></i> Git Commands</h1>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Git commands...">
+            </div>
+            
+            <div class="command-list">
+                <div class="command">
+                    <h3>Initialize Repository</h3>
+                    <pre><code>git init</code></pre>
+                    <p>Creates an empty Git repository or reinitialize an existing one</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Clone Repository</h3>
+                    <pre><code>git clone https://github.com/username/repository.git</code></pre>
+                    <p>Creates a copy of an existing Git repository</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Create and Switch to New Branch</h3>
+                    <pre><code>git checkout -b branch-name</code></pre>
+                    <p>Creates and switches to a new branch</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Add Files</h3>
+                    <pre><code>git add .</code></pre>
+                    <p>Adds all changed files to staging area</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Commit Changes</h3>
+                    <pre><code>git commit -m "Commit message"</code></pre>
+                    <p>Records changes to the repository with a message</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Push to Remote</h3>
+                    <pre><code>git push origin branch-name</code></pre>
+                    <p>Updates remote refs along with associated objects</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Pull from Remote</h3>
+                    <pre><code>git pull origin branch-name</code></pre>
+                    <p>Fetches from and integrates with another repository or branch</p>
+                </div>
+                
+                <div class="command">
+                    <h3>View Commit History</h3>
+                    <pre><code>git log</code></pre>
+                    <p>Shows the commit logs</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <p>DevOps Commands Hub | <a href="https://github.com/yourusername/devops-snippets">GitHub Repository</a></p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

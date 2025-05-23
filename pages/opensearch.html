@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenSearch Commands - DevOps Commands Hub</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="no-gap">
+    <header>
+        <h1>DevOps Commands Hub</h1>
+        <p>OpenSearch Commands</p>
+    </header>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Categories</h2>
+                <button id="toggleSidebar" class="toggle-sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../index.html" class="sidebar-item"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="docker.html" class="sidebar-item"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="git.html" class="sidebar-item"><i class="fab fa-git-alt"></i> Git</a></li>
+                    <li><a href="magento.html" class="sidebar-item"><i class="fas fa-shopping-cart"></i> Magento</a></li>
+                    <li><a href="mysql.html" class="sidebar-item"><i class="fas fa-database"></i> MySQL</a></li>
+                    <li><a href="opensearch.html" class="sidebar-item active"><i class="fas fa-search"></i> OpenSearch</a></li>
+                    <li><a href="redis.html" class="sidebar-item"><i class="fas fa-server"></i> Redis</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main>
+            <h1 class="page-title"><i class="fas fa-search"></i> OpenSearch Commands</h1>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search OpenSearch commands...">
+            </div>
+            
+            <div class="command-list">
+                <div class="command">
+                    <h3>Check Cluster Health</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/_cluster/health?pretty"</code></pre>
+                    <p>Shows the health status of the OpenSearch cluster</p>
+                </div>
+                
+                <div class="command">
+                    <h3>List All Indices</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/_cat/indices?v"</code></pre>
+                    <p>Shows a list of all indices in the cluster</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Delete Index</h3>
+                    <pre><code>curl -XDELETE "http://localhost:9200/index_name"</code></pre>
+                    <p>Deletes an index from the cluster</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Create Index</h3>
+                    <pre><code>curl -XPUT "http://localhost:9200/index_name"</code></pre>
+                    <p>Creates a new index in the cluster</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Cluster Stats</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/_cluster/stats?human&pretty"</code></pre>
+                    <p>Shows statistics about the cluster</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Node Information</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/_nodes?pretty"</code></pre>
+                    <p>Shows information about nodes in the cluster</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Simple Search</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/index_name/_search?q=field:value&pretty"</code></pre>
+                    <p>Performs a simple search query against an index</p>
+                </div>
+                
+                <div class="command">
+                    <h3>JSON Search Query</h3>
+                    <pre><code>curl -XGET "http://localhost:9200/index_name/_search" -H 'Content-Type: application/json' -d'
+{
+  "query": {
+    "match": {
+      "field_name": "value"
+    }
+  }
+}'</code></pre>
+                    <p>Performs a search query using JSON format</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <p>DevOps Commands Hub | <a href="https://github.com/yourusername/devops-snippets">GitHub Repository</a></p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

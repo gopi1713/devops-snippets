@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL Commands - DevOps Commands Hub</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="no-gap">
+    <header>
+        <h1>DevOps Commands Hub</h1>
+        <p>MySQL Commands</p>
+    </header>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Categories</h2>
+                <button id="toggleSidebar" class="toggle-sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../index.html" class="sidebar-item"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="docker.html" class="sidebar-item"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="git.html" class="sidebar-item"><i class="fab fa-git-alt"></i> Git</a></li>
+                    <li><a href="magento.html" class="sidebar-item"><i class="fas fa-shopping-cart"></i> Magento</a></li>
+                    <li><a href="mysql.html" class="sidebar-item active"><i class="fas fa-database"></i> MySQL</a></li>
+                    <li><a href="opensearch.html" class="sidebar-item"><i class="fas fa-search"></i> OpenSearch</a></li>
+                    <li><a href="redis.html" class="sidebar-item"><i class="fas fa-server"></i> Redis</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main>
+            <h1 class="page-title"><i class="fas fa-database"></i> MySQL Commands</h1>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search MySQL commands...">
+            </div>
+            
+            <div class="command-list">
+                <div class="command">
+                    <h3>Connect to MySQL</h3>
+                    <pre><code>mysql -u username -p database_name</code></pre>
+                    <p>Connect to a MySQL database</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Export Database</h3>
+                    <pre><code>mysqldump -u username -p database_name > backup.sql</code></pre>
+                    <p>Export a database to an SQL file</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Import Database</h3>
+                    <pre><code>mysql -u username -p database_name < backup.sql</code></pre>
+                    <p>Import a database from an SQL file</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show Databases</h3>
+                    <pre><code>SHOW DATABASES;</code></pre>
+                    <p>Lists all databases on the server</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Create Database</h3>
+                    <pre><code>CREATE DATABASE database_name;</code></pre>
+                    <p>Creates a new database</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show Tables</h3>
+                    <pre><code>SHOW TABLES;</code></pre>
+                    <p>Lists all tables in the current database</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Describe Table</h3>
+                    <pre><code>DESCRIBE table_name;</code></pre>
+                    <p>Shows the structure of a table</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Create User</h3>
+                    <pre><code>CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';</code></pre>
+                    <p>Creates a new MySQL user</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <p>DevOps Commands Hub | <a href="https://github.com/yourusername/devops-snippets">GitHub Repository</a></p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

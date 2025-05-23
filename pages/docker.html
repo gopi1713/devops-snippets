@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Commands - DevOps Commands Hub</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="no-gap">
+    <header>
+        <h1>DevOps Commands Hub</h1>
+        <p>Docker Commands</p>
+    </header>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Categories</h2>
+                <button id="toggleSidebar" class="toggle-sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../index.html" class="sidebar-item"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="docker.html" class="sidebar-item"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="kubernetes.html" class="sidebar-item"><i class="fas fa-dharmachakra"></i> Kubernetes</a></li>
+                    <li><a href="git.html" class="sidebar-item"><i class="fab fa-git-alt"></i> Git</a></li>
+                    <li><a href="magento.html" class="sidebar-item"><i class="fas fa-shopping-cart"></i> Magento</a></li>
+                    <li><a href="mysql.html" class="sidebar-item"><i class="fas fa-database"></i> MySQL</a></li>
+                    <li><a href="opensearch.html" class="sidebar-item"><i class="fas fa-search"></i> OpenSearch</a></li>
+                    <li><a href="redis.html" class="sidebar-item"><i class="fas fa-server"></i> Redis</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main>
+            <h1 class="page-title"><i class="fab fa-docker"></i> Docker Commands</h1>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Docker commands...">
+            </div>
+            
+            <div class="command-list">
+                <div class="command">
+                    <h3>List all containers</h3>
+                    <pre><code>docker ps -a</code></pre>
+                    <p>Shows all containers, including stopped ones</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Build an image</h3>
+                    <pre><code>docker build -t image-name:tag .</code></pre>
+                    <p>Builds a Docker image from a Dockerfile in the current directory</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Run a container</h3>
+                    <pre><code>docker run -d -p 8080:80 --name my-container image-name:tag</code></pre>
+                    <p>Runs a container in detached mode with port mapping</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Stop a container</h3>
+                    <pre><code>docker stop container-name-or-id</code></pre>
+                    <p>Stops a running container</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Remove a container</h3>
+                    <pre><code>docker rm container-name-or-id</code></pre>
+                    <p>Removes a stopped container</p>
+                </div>
+                
+                <div class="command">
+                    <h3>List all images</h3>
+                    <pre><code>docker images</code></pre>
+                    <p>Lists all Docker images</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Remove an image</h3>
+                    <pre><code>docker rmi image-name:tag</code></pre>
+                    <p>Removes a Docker image</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Exec into container</h3>
+                    <pre><code>docker exec -it container-name-or-id bash</code></pre>
+                    <p>Executes an interactive bash shell inside a running container</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <p>DevOps Commands Hub | <a href="https://github.com/yourusername/devops-snippets">GitHub Repository</a></p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubernetes Commands - DevOps Commands Hub</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="no-gap">
+    <header>
+        <h1>DevOps Commands Hub</h1>
+        <p>Kubernetes Commands</p>
+    </header>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Categories</h2>
+                <button id="toggleSidebar" class="toggle-sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../index.html" class="sidebar-item"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="docker.html" class="sidebar-item"><i class="fab fa-docker"></i> Docker</a></li>
+                    <li><a href="kubernetes.html" class="sidebar-item"><i class="fas fa-dharmachakra"></i> Kubernetes</a></li>
+                    <li><a href="git.html" class="sidebar-item"><i class="fab fa-git-alt"></i> Git</a></li>
+                    <li><a href="magento.html" class="sidebar-item"><i class="fas fa-shopping-cart"></i> Magento</a></li>
+                    <li><a href="mysql.html" class="sidebar-item"><i class="fas fa-database"></i> MySQL</a></li>
+                    <li><a href="opensearch.html" class="sidebar-item"><i class="fas fa-search"></i> OpenSearch</a></li>
+                    <li><a href="redis.html" class="sidebar-item"><i class="fas fa-server"></i> Redis</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main>
+            <h1 class="page-title"><i class="fas fa-dharmachakra"></i> Kubernetes Commands</h1>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Kubernetes commands...">
+            </div>
+            
+            <div class="command-list">
+                <div class="command">
+                    <h3>Get all pods</h3>
+                    <pre><code>kubectl get pods</code></pre>
+                    <p>Lists all pods in the current namespace</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Describe pod</h3>
+                    <pre><code>kubectl describe pod [pod-name]</code></pre>
+                    <p>Shows detailed information about a pod</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Get all deployments</h3>
+                    <pre><code>kubectl get deployments</code></pre>
+                    <p>Lists all deployments in the current namespace</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Get all services</h3>
+                    <pre><code>kubectl get services</code></pre>
+                    <p>Lists all services in the current namespace</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Apply a configuration</h3>
+                    <pre><code>kubectl apply -f filename.yaml</code></pre>
+                    <p>Applies a configuration from a YAML file</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Get pod logs</h3>
+                    <pre><code>kubectl logs [pod-name]</code></pre>
+                    <p>Shows logs for a pod</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Execute command in pod</h3>
+                    <pre><code>kubectl exec -it [pod-name] -- [command]</code></pre>
+                    <p>Executes a command in a pod</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Port forward to pod</h3>
+                    <pre><code>kubectl port-forward [pod-name] [local-port]:[pod-port]</code></pre>
+                    <p>Forwards a local port to a port in a pod</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <p>DevOps Commands Hub | <a href="https://github.com/yourusername/devops-snippets">GitHub Repository</a></p>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
