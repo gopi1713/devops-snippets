@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Git Commands - DevOps Commands Hub</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/search-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="no-gap">
@@ -63,6 +64,116 @@
                     <h3>View Commit History</h3>
                     <pre><code>git log</code></pre>
                     <p>Shows the commit logs</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Rebase Branch</h3>
+                    <pre><code>git rebase main</code></pre>
+                    <p>Reapply commits from your branch on top of the main branch</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Interactive Rebase</h3>
+                    <pre><code>git rebase -i HEAD~3</code></pre>
+                    <p>Interactive rebase for the last 3 commits to squash, edit, or reorder them</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Cherry-pick Commit</h3>
+                    <pre><code>git cherry-pick commit-hash</code></pre>
+                    <p>Apply changes from a specific commit to the current branch</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Stash Changes</h3>
+                    <pre><code>git stash</code></pre>
+                    <p>Temporarily save changes that are not ready to be committed</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Apply Stash</h3>
+                    <pre><code>git stash apply</code></pre>
+                    <p>Apply the most recent stashed changes without removing them from stash</p>
+                </div>
+                
+                <div class="command">
+                    <h3>List Stashes</h3>
+                    <pre><code>git stash list</code></pre>
+                    <p>List all stashed changesets</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Reset Hard</h3>
+                    <pre><code>git reset --hard HEAD~1</code></pre>
+                    <p>Reset to the previous commit, discarding all changes</p>
+                </div>
+                
+                <div class="command">
+                    <h3>View File Changes</h3>
+                    <pre><code>git diff filename</code></pre>
+                    <p>Show changes between working directory and staging area</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Amend Commit</h3>
+                    <pre><code>git commit --amend</code></pre>
+                    <p>Edit the last commit message or add forgotten files</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Force Push (Use with Caution)</h3>
+                    <pre><code>git push --force-with-lease origin branch-name</code></pre>
+                    <p>Force push changes but abort if the remote branch has been updated</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Create a Tag</h3>
+                    <pre><code>git tag -a v1.0.0 -m "Version 1.0.0"</code></pre>
+                    <p>Create an annotated tag for a release version</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Push Tags</h3>
+                    <pre><code>git push --tags</code></pre>
+                    <p>Push all tags to the remote repository</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Show Branches Merged to Main</h3>
+                    <pre><code>git branch --merged main</code></pre>
+                    <p>List all branches that have been merged into main branch</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Ignore File Mode Changes</h3>
+                    <pre><code>git config core.fileMode false</code></pre>
+                    <p>Ignore file permission changes in Git</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Set Global Git User</h3>
+                    <pre><code>git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"</code></pre>
+                    <p>Set your name and email for all Git repositories</p>
+                </div>
+                
+                <div class="command">
+                    <h3>View Remote Info</h3>
+                    <pre><code>git remote -v</code></pre>
+                    <p>Show remote repositories and their URLs</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Checkout Pull Request (GitHub)</h3>
+                    <pre><code>git fetch origin pull/123/head:pr-123
+git checkout pr-123</code></pre>
+                    <p>Check out a specific pull request locally (123 is the PR number)</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Clean Untracked Files</h3>
+                    <pre><code>git clean -fd</code></pre>
+                    <p>Remove untracked files and directories (use with caution)</p>
                 </div>
             </div>
         </main>

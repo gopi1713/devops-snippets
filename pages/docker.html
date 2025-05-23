@@ -5,68 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker Commands - DevOps Commands Hub</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/search-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="no-gap">
-    <div data-include="sidebar" data-root-path=".." data-active-page="DOCKER"></div>
-    
-    <main>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search Docker commands...">
-        </div>
+    <div class="container">
+        <div data-include="sidebar" data-root-path=".." data-active-page="DOCKER"></div>
         
-        <div class="command-list">
-            <div class="command">
-                <h3>List all containers</h3>
-                <pre><code>docker ps -a</code></pre>
-                <p>Shows all containers, including stopped ones</p>
+        <main>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Docker commands...">
             </div>
             
-            <div class="command">
-                <h3>Build an image</h3>
-                <pre><code>docker build -t image-name:tag .</code></pre>
-                <p>Builds a Docker image from a Dockerfile in the current directory</p>
+            <div class="command-list">
+                <div class="command">
+                    <h3>List all containers</h3>
+                    <pre><code>docker ps -a</code></pre>
+                    <p>Shows all containers, including stopped ones</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Build an image</h3>
+                    <pre><code>docker build -t image-name:tag .</code></pre>
+                    <p>Builds a Docker image from a Dockerfile in the current directory</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Run a container</h3>
+                    <pre><code>docker run -d -p 8080:80 --name my-container image-name:tag</code></pre>
+                    <p>Runs a container in detached mode with port mapping</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Stop a container</h3>
+                    <pre><code>docker stop container-name-or-id</code></pre>
+                    <p>Stops a running container</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Remove a container</h3>
+                    <pre><code>docker rm container-name-or-id</code></pre>
+                    <p>Removes a stopped container</p>
+                </div>
+                
+                <div class="command">
+                    <h3>List all images</h3>
+                    <pre><code>docker images</code></pre>
+                    <p>Lists all Docker images</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Remove an image</h3>
+                    <pre><code>docker rmi image-name:tag</code></pre>
+                    <p>Removes a Docker image</p>
+                </div>
+                
+                <div class="command">
+                    <h3>Exec into container</h3>
+                    <pre><code>docker exec -it container-name-or-id bash</code></pre>
+                    <p>Executes an interactive bash shell inside a running container</p>
+                </div>
             </div>
-            
-            <div class="command">
-                <h3>Run a container</h3>
-                <pre><code>docker run -d -p 8080:80 --name my-container image-name:tag</code></pre>
-                <p>Runs a container in detached mode with port mapping</p>
-            </div>
-            
-            <div class="command">
-                <h3>Stop a container</h3>
-                <pre><code>docker stop container-name-or-id</code></pre>
-                <p>Stops a running container</p>
-            </div>
-            
-            <div class="command">
-                <h3>Remove a container</h3>
-                <pre><code>docker rm container-name-or-id</code></pre>
-                <p>Removes a stopped container</p>
-            </div>
-            
-            <div class="command">
-                <h3>List all images</h3>
-                <pre><code>docker images</code></pre>
-                <p>Lists all Docker images</p>
-            </div>
-            
-            <div class="command">
-                <h3>Remove an image</h3>
-                <pre><code>docker rmi image-name:tag</code></pre>
-                <p>Removes a Docker image</p>
-            </div>
-            
-            <div class="command">
-                <h3>Exec into container</h3>
-                <pre><code>docker exec -it container-name-or-id bash</code></pre>
-                <p>Executes an interactive bash shell inside a running container</p>
-            </div>
-        </div>
-    </main>
-    
-    <!-- Remove footer -->
+        </main>
+    </div>
 
     <script src="../js/include.js"></script>
     <script src="../js/command-copy.js"></script>
