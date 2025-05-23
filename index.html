@@ -6,67 +6,72 @@
     <title>DevOps Commands Hub</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Hide content during load to prevent flicker */
+        body.loading {
+            opacity: 0;
+        }
+        body {
+            transition: opacity 0.3s ease-in;
+        }
+    </style>
 </head>
-<body class="no-gap home">
-    <div class="container">
-        <div data-include="sidebar" data-root-path="." data-active-page="HOME"></div>
-        
-        <main>
-            <div class="home-content">
-                <h2>Welcome to DevOps Commands Hub</h2>
-                <p>This site provides a collection of commonly used commands for various DevOps tools and technologies.</p>
-                
-                <div class="category-grid">
-                    <a href="pages/docker" class="category-card">
-                        <i class="fab fa-docker"></i>
-                        <h3>Docker</h3>
-                        <p>Container platform commands</p>
-                    </a>
-                    
-                    <a href="pages/git" class="category-card">
-                        <i class="fab fa-git-alt"></i>
-                        <h3>Git</h3>
-                        <p>Version control commands</p>
-                    </a>
-                    
-                    <a href="pages/magento" class="category-card">
-                        <i class="fas fa-shopping-cart"></i>
-                        <h3>Magento</h3>
-                        <p>E-commerce platform commands</p>
-                    </a>
-                    
-                    <a href="pages/mysql" class="category-card">
-                        <i class="fas fa-database"></i>
-                        <h3>MySQL</h3>
-                        <p>Database commands</p>
-                    </a>
-                    
-                    <a href="pages/opensearch" class="category-card">
-                        <i class="fas fa-search"></i>
-                        <h3>OpenSearch</h3>
-                        <p>Search engine commands</p>
-                    </a>
-                    
-                    <a href="pages/redis" class="category-card">
-                        <i class="fas fa-server"></i>
-                        <h3>Redis</h3>
-                        <p>In-memory database commands</p>
-                    </a>
-                    
-                    <a href="pages/packages" class="category-card">
-                        <i class="fas fa-box"></i>
-                        <h3>Packages</h3>
-                        <p>Service installation commands</p>
-                    </a>
-                </div>
-            </div>
-        </main>
-    </div>
+<body class="no-gap loading">
+    <div data-include="sidebar" data-root-path="." data-active-page="HOME"></div>
     
-    <footer>
-        <p>DevOps Commands Hub | <a href="https://github.com/gopi1713/devops-snippets">GitHub Repository</a> | <a href="https://gopi1713.github.io/devops-snippets/">Visit Live Site</a></p>
-    </footer>
+    <main>
+        <div class="home-content">
+            <h2>Welcome to DevOps Commands Hub</h2>
+            <p>This site provides a collection of commonly used commands for various DevOps tools and technologies.</p>
+            
+            <div class="category-grid">
+                <a href="pages/docker" class="category-card">
+                    <i class="fab fa-docker"></i>
+                    <h3>Docker</h3>
+                    <p>Container platform commands</p>
+                </a>
+                
+                <a href="pages/git" class="category-card">
+                    <i class="fab fa-git-alt"></i>
+                    <h3>Git</h3>
+                    <p>Version control commands</p>
+                </a>
+                
+                <a href="pages/magento" class="category-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Magento</h3>
+                    <p>E-commerce platform commands</p>
+                </a>
+                
+                <a href="pages/mysql" class="category-card">
+                    <i class="fas fa-database"></i>
+                    <h3>MySQL</h3>
+                    <p>Database commands</p>
+                </a>
+                
+                <a href="pages/opensearch" class="category-card">
+                    <i class="fas fa-search"></i>
+                    <h3>OpenSearch</h3>
+                    <p>Search engine commands</p>
+                </a>
+                
+                <a href="pages/redis" class="category-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Redis</h3>
+                    <p>In-memory database commands</p>
+                </a>
+                
+                <a href="pages/packages" class="category-card">
+                    <i class="fas fa-box"></i>
+                    <h3>Packages</h3>
+                    <p>Service installation commands</p>
+                </a>
+            </div>
+        </div>
+    </main>
 
     <script src="js/include.js"></script>
+    <script src="js/command-copy.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

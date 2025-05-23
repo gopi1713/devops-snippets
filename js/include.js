@@ -47,13 +47,26 @@ document.addEventListener("DOMContentLoaded", function() {
 function initSidebarControls() {
     const sidebar = document.getElementById('mainSidebar');
     const toggleBtn = document.getElementById('toggleSidebar');
+    const mainContent = document.querySelector('main');
     
     if (!sidebar) {
         console.warn('Sidebar element not found. Auto-hide functionality disabled.');
         return;
     }
     
- 
+    // Add a class to indicate loading is complete
+    document.body.classList.add('page-loaded');
+    
+    // Set initial main content margin based on window width
+    if (mainContent) {
+        if (window.innerWidth < 768) {
+            // On mobile, start collapsed
+            sidebar.classList.add('collapsed');
+            mainContent.style.marginLeft = '50px';
+        } else {
+            mainContent.style.marginLeft = '250px';
+        }
+    }
     
     let sidebarTimer;
     let isMouseOverSidebar = false;
@@ -62,22 +75,30 @@ function initSidebarControls() {
     function collapseSidebar() {
         if (!isMouseOverSidebar && !sidebar.classList.contains('collapsed')) {
             sidebar.classList.add('collapsed');
+            if (mainContent) {
+                mainContent.style.marginLeft = '50px';
+            }
         }
     }
     
     // Function to show the sidebar
     function showSidebar() {
         sidebar.classList.remove('collapsed');
+        if (mainContent) {
+            mainContent.style.marginLeft = '250px';
+        }
         resetTimer();
     }
     
     // Function to reset the auto-hide timer
     function resetTimer() {
         clearTimeout(sidebarTimer);
-        sidebarTimer = setTimeout(collapseSidebar, 2000); // 2 seconds
+        
+        // Use consistent 2 second delay for all pages
+        sidebarTimer = setTimeout(collapseSidebar, 2000); // Always 2 seconds
     }
     
-    // Initialize the timer when page loads
+    // Initialize the timer immediately for all pages
     resetTimer();
     
     // Track mouse movement over document to reveal sidebar
@@ -94,9 +115,15 @@ function initSidebarControls() {
     if (toggleBtn) {
         toggleBtn.addEventListener('click', function() {
             sidebar.classList.toggle('collapsed');
-            // If sidebar is now visible, reset timer
-            if (!sidebar.classList.contains('collapsed')) {
-                resetTimer();
+            
+            // Adjust main content margin
+            if (mainContent) {
+                if (sidebar.classList.contains('collapsed')) {
+                    mainContent.style.marginLeft = '50px';
+                } else {
+                    mainContent.style.marginLeft = '250px';
+                    resetTimer();
+                }
             }
         });
     }
