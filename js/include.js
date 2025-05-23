@@ -7,8 +7,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const activePage = element.getAttribute('data-active-page') || '';
         
         fetch(rootPath + '/components/sidebar.html')
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch sidebar: ${response.status}`);
+                }
+                return response.text();
+            })
             .then(html => {
+                console.log('Sidebar HTML loaded successfully');
                 // Replace placeholders with actual values
                 html = html.replace(/ROOT_PATH/g, rootPath);
                 html = html.replace(`${activePage}_ACTIVE`, 'active');
@@ -25,20 +31,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 // Initialize sidebar controls AFTER sidebar is loaded
                 initSidebarControls();
-                
-                // Reattach event listener for sidebar toggle
-                const toggleBtn = element.querySelector('#toggleSidebar');
-                const sidebarNav = element.querySelector('.sidebar-nav');
-                
-                if (toggleBtn && sidebarNav) {
-                    toggleBtn.addEventListener('click', function() {
-                        sidebarNav.classList.toggle('show');
-                    });
-                }
             })
             .catch(error => {
                 console.error('Error loading sidebar:', error);
-                element.innerHTML = '<p>Error loading sidebar</p>';
+                element.innerHTML = `<p>Error loading sidebar: ${error.message}</p>`;
             });
     });
 });

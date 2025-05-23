@@ -9,45 +9,44 @@ function initializeCommandCopy() {
         const commandBlocks = document.querySelectorAll('.command');
         
         commandBlocks.forEach(function(command) {
-            if (command.querySelector('.copy-button')) return; // Skip if already has button
+            if (command.querySelector('.copy-button')) return;
             
             const codeElement = command.querySelector('code');
             if (!codeElement) return;
             
-            // Create copy button
+            // Create copy button with better UX
             const copyButton = document.createElement('button');
             copyButton.className = 'copy-button';
-            copyButton.textContent = 'Copy';
+            copyButton.innerHTML = '<i class="far fa-copy"></i> Copy';
             
-            // Add copy functionality
             copyButton.addEventListener('click', function() {
                 const commandText = codeElement.textContent;
                 
-                // Copy text to clipboard
                 navigator.clipboard.writeText(commandText)
                     .then(function() {
-                        // Visual feedback
-                        copyButton.textContent = 'Copied!';
+                        // Better visual feedback
+                        copyButton.innerHTML = '<i class="fas fa-check"></i> Copied!';
                         copyButton.classList.add('copied');
                         
-                        // Reset after 2 seconds
+                        // Highlight the code briefly
+                        codeElement.parentElement.style.boxShadow = '0 0 0 2px #27ae60';
+                        
                         setTimeout(function() {
-                            copyButton.textContent = 'Copy';
+                            copyButton.innerHTML = '<i class="far fa-copy"></i> Copy';
                             copyButton.classList.remove('copied');
+                            codeElement.parentElement.style.boxShadow = '';
                         }, 2000);
                     })
                     .catch(function(err) {
                         console.error('Could not copy text: ', err);
-                        copyButton.textContent = 'Error!';
+                        copyButton.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error!';
                         
-                        // Reset after 2 seconds
                         setTimeout(function() {
-                            copyButton.textContent = 'Copy';
+                            copyButton.innerHTML = '<i class="far fa-copy"></i> Copy';
                         }, 2000);
                     });
             });
             
-            // Add button to the command
             command.appendChild(copyButton);
         });
     }, 100);

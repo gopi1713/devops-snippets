@@ -6,7 +6,7 @@
 
 /* Global body styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f8f9fa;
@@ -255,7 +255,8 @@ main {
     transition: margin-left 0.3s ease;
     overflow-y: auto; /* Only main scrolls */
     height: 100vh; /* Full height without footer */
-    padding: 1.5rem;
+    padding: 2rem;
+    background-color: #f8f9fa;
 }
 
 /* Handle main content margin when sidebar is collapsed */
@@ -326,8 +327,30 @@ main {
     padding-bottom: 0.5rem;
 }
 
+/* Search container improvements */
 .search-container {
-    margin-bottom: 2rem;
+    margin: 0 0 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1rem 0;
+    background: #f8f9fa;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
 #searchInput {
@@ -347,40 +370,48 @@ main {
 }
 
 .command {
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     padding: 1.5rem;
-    transition: transform 0.3s ease;
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
+    border-left: 4px solid #3498db;
 }
 
 .command:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .command h3 {
-    margin-bottom: 0.5rem;
-    color: #34495e;
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
 }
 
 .command pre {
-    background-color: #f4f6f8;
+    background-color: #f8fafb;
+    border-radius: 6px;
     padding: 1rem;
-    border-radius: 4px;
+    margin: 0.8rem 0;
     overflow-x: auto;
-    margin: 0.5rem 0;
-    padding-right: 60px; /* Accommodate copy button */
+    border: 1px solid #eaecef;
 }
 
 .command code {
-    font-family: 'Courier New', Courier, monospace;
-    color: #e74c3c;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #24292e;
 }
 
 .command p {
-    font-size: 0.9rem;
-    color: #7f8c8d;
+    margin: 0.8rem 0 0;
+    font-size: 0.95rem;
+    color: #666;
 }
 
 /* Command copy button */
@@ -390,22 +421,23 @@ main {
 
 .copy-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 1rem;
+    right: 1rem;
     background: #3498db;
     color: white;
     border: none;
     border-radius: 4px;
-    padding: 5px 10px;
-    font-size: 12px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
     cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
-    z-index: 5;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    font-weight: 500;
 }
 
 .copy-button:hover {
     opacity: 1;
+    transform: scale(1.05);
 }
 
 .copy-button.copied {

@@ -14,16 +14,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set active sidebar item based on current page
     sidebarLinks.forEach(link => {
-        if (link.getAttribute('href') === window.location.pathname.split('/').pop()) {
+        const href = link.getAttribute('href');
+        const path = window.location.pathname;
+        
+        // Better home link detection
+        if ((path.endsWith('/index') || path.endsWith('/') || path === '') && 
+            (href === 'index' || href === '/index' || href === '/' || href === '')) {
             link.classList.add('active');
-        } else if (window.location.pathname.endsWith('/') && link.getAttribute('href') === 'index.html') {
+        } 
+        // For other pages
+        else if (path.includes(href) && href !== 'index' && href !== '/' && href !== '') {
             link.classList.add('active');
         }
     });
     
-    // Search functionality (only if search input exists on the page)
+    // Enhanced search functionality (only if search input exists on the page)
     if (searchInput) {
-        searchInput.addEventListener('keyup', function() {
+        // Use input event instead of keyup for better responsiveness
+        searchInput.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
             const commands = document.querySelectorAll('.command');
             
@@ -34,10 +42,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (title.includes(searchTerm) || code.includes(searchTerm) || description.includes(searchTerm)) {
                     command.style.display = 'block';
+                    
+                    // Add highlight animation for better UX
+                    if (searchTerm.length > 0) {
+                        command.classList.add('search-match');
+                        setTimeout(() => command.classList.remove('search-match'), 500);
+                    }
                 } else {
                     command.style.display = 'none';
                 }
             });
         });
+        
+        // Add keyboard shortcut to focus search box (press '/')
+        document.addEventListener('keydown', function(e) {
+            if (e.key === '/' && document.activeElement !== searchInput) {
+                searchInput.focus();
+                e.preventDefault();
+            }
+        });
     }
+    
+    // Add search highlight animation styles
+    document.head.insertAdjacentHTML('beforeend', `
+    <style>
+    .search-match {
+        animation: highlightMatch 0.5s ease-in-out;
+    }
+    
+    @keyframes highlightMatch {
+        0% { background-color: rgba(52, 152, 219, 0.1); }
+        50% { background-color: rgba(52, 152, 219, 0.3); }
+        100% { background-color: transparent; }
+    }
+    </style>
+    `);
 });
