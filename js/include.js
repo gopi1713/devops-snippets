@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 html = html.replace(`${activePage}_ACTIVE`, 'active');
                 
                 // Remove all other active placeholders
-                const pages = ['HOME', 'DOCKER', 'GIT', 'MAGENTO', 'MAGENTO_INSTALL', 'MYSQL', 'OPENSEARCH', 'REDIS', 'PACKAGES'];
+                const pages = ['HOME', 'DOCKER', 'GIT', 'MAGENTO', 'MAGENTO_INSTALL', 'MYSQL', 'OPENSEARCH', 'PACKAGES', 'REDIS', 'ERRORS'];
                 pages.forEach(page => {
                     if (page !== activePage) {
                         html = html.replace(`${page}_ACTIVE`, '');

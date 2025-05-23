@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errors & Solutions - DevOps Commands Hub</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../css/search-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Overall page styling */
+        .page-header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        /* Tab system styling */
+        .tabs-container {
+            margin-bottom: 30px;
+        }
+
+        .tabs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 5px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            overflow-x: auto;
+            margin-bottom: 0;
+            flex-grow: 1;
+        }
+
+        .tab-button {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 600;
+            color: #777;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .tab-button:hover {
+            color: #e74c3c;
+            background-color: #f8f9fa;
+        }
+
+        .tab-button.active {
+            color: #e74c3c;
+            border-bottom-color: #e74c3c;
+        }
+
+        .tab-button i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Individual error cards */
+        .error-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .error-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .error-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .error-header {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .error-header i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .error-body {
+            padding: 15px;
+        }
+
+        .error-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .error-code {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .error-code::before {
+            content: "ERROR";
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            font-size: 0.7rem;
+            background-color: rgba(231, 76, 60, 0.8);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .solution {
+            background-color: #f8f9fa;
+            border-left: 4px solid #2ecc71;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .solution-header {
+            color: #2ecc71;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .solution-header i {
+            margin-right: 8px;
+        }
+
+        .solution p {
+            margin-bottom: 8px;
+        }
+
+        .solution code {
+            background-color: #e9ecef;
+            color: #e74c3c;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        /* Search bar styling */
+        .search-container {
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: none;
+            border-radius: 30px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-container input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-container input:focus {
+            background-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Compact search styling */
+        .compact-search {
+            position: relative;
+            width: 250px;
+            margin-left: 15px;
+        }
+
+        .compact-search input {
+            width: 100%;
+            padding: 8px 12px 8px 32px;
+            border: 1px solid #e1e4e8;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            background-color: #f5f7f9;
+            transition: all 0.2s ease;
+        }
+
+        .compact-search input:focus {
+            background-color: #fff;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .compact-search .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .compact-search input::placeholder {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* Loading animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(231, 76, 60, 0.3);
+            border-top-color: #e74c3c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .error-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs-nav {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body class="no-gap">
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="container">
+        <div data-include="sidebar" data-root-path=".." data-active-page="ERRORS"></div>
+        
+        <main>
+            <!-- Page header -->
+            <div class="page-header">
+                <h1><i class="fas fa-exclamation-triangle"></i> Common Errors & Solutions</h1>
+                <p>Find quick solutions to frequently encountered issues in development environments</p>
+            </div>
+            
+            <!-- Tab navigation -->
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <div class="tabs-nav" id="errorTabs">
+                        <button class="tab-button active" data-tab="magento">
+                            <i class="fas fa-shopping-cart"></i> Magento
+                        </button>
+                        <button class="tab-button" data-tab="mysql">
+                            <i class="fas fa-database"></i> MySQL
+                        </button>
+                        <button class="tab-button" data-tab="nginx">
+                            <i class="fas fa-server"></i> Nginx
+                        </button>
+                        <button class="tab-button" data-tab="varnish">
+                            <i class="fas fa-bolt"></i> Varnish
+                        </button>
+                        <button class="tab-button" data-tab="docker">
+                            <i class="fab fa-docker"></i> Docker
+                        </button>
+                        <button class="tab-button" data-tab="git">
+                            <i class="fab fa-git-alt"></i> Git
+                        </button>
+                        <button class="tab-button" data-tab="php">
+                            <i class="fab fa-php"></i> PHP
+                        </button>
+                    </div>
+                    <div class="compact-search">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Search errors...">
+                    </div>
+                </div>
+                
+                <!-- Magento Tab Content -->
+                <div id="magentoTab" class="tab-content active">
+                    <h2>Magento Common Errors</h2>
+                    
+                    <div class="error-grid">
+                        <!-- Installation errors -->
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                PHP Extension intl Missing
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">When installing Magento, you receive an error about missing PHP extension</p>
+                                <div class="error-code">PHP Warning: Magento supports PHP 7.0.2 or newer | PHP Extension "intl" must be installed</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Install the missing PHP extension with the package manager:</p>
+                                    <p>For Ubuntu/Debian: <code>sudo apt-get install php-intl</code></p>
+                                    <p>For CentOS/RHEL: <code>sudo yum install php-intl</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Missing BCMath Extension
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">During Magento 2 installation, PHP reports missing bcmath extension</p>
+                                <div class="error-code">Check for required PHP extensions (php -m): 'bcmath' must be installed</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Install the BCMath PHP extension:</p>
+                                    <p>For Ubuntu/Debian: <code>sudo apt-get install php-bcmath</code></p>
+                                    <p>For CentOS/RHEL: <code>sudo yum install php-bcmath</code></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Slow Admin Panel
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">The Magento Admin panel is extremely slow</p>
+                                <div class="error-code">The admin panel takes 30+ seconds to load simple pages</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Enable caching for admin: <code>bin/magento cache:enable</code></p>
+                                    <p>2. Move to production mode: <code>bin/magento deploy:mode:set production</code></p>
+                                    <p>3. Check for poorly performing third-party modules</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Deployment errors -->
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Static Content Deploy Timeout
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Static content deployment takes too long or times out</p>
+                                <div class="error-code">ERROR: Command execution timeout after 900 seconds</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Use these flags for faster deployment:</p>
+                                    <p><code>bin/magento setup:static-content:deploy -f --no-interaction --jobs=4</code></p>
+                                    <p>Deploy only necessary languages:</p>
+                                    <p><code>bin/magento setup:static-content:deploy en_US -f</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Permission Issues
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Permission denied errors during deployment</p>
+                                <div class="error-code">Warning: file_put_contents(): Failed to open stream: Permission denied</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Set proper permissions:</p>
+                                    <p><code>find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +</code></p>
+                                    <p><code>find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +</code></p>
+                                    <p><code>chmod u+x bin/magento</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Cache Clean Fails
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Unable to clean cache</p>
+                                <div class="error-code">Cache types config flushing failed. Please run "setup:upgrade"</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Try manual cache clearing:</p>
+                                    <p><code>rm -rf var/cache/* var/page_cache/* generated/code/*</code></p>
+                                    <p><code>bin/magento setup:upgrade</code></p>
+                                    <p><code>bin/magento cache:flush</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MySQL Tab Content -->
+                <div id="mysqlTab" class="tab-content">
+                    <h2>MySQL Common Errors</h2>
+                    
+                    <div class="error-grid">
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Access Denied for User
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">MySQL user authentication error, preventing access to the database</p>
+                                <div class="error-code">ERROR 1045 (28000): Access denied for user 'username'@'localhost' (using password: YES)</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check if username and password are correct</p>
+                                    <p>2. Reset the password if necessary:</p>
+                                    <p><code>ALTER USER 'username'@'localhost' IDENTIFIED BY 'new_password';</code></p>
+                                    <p>3. Verify the user has proper permissions:</p>
+                                    <p><code>SHOW GRANTS FOR 'username'@'localhost';</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Table Doesn't Exist
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Query refers to a table that doesn't exist in the database</p>
+                                <div class="error-code">ERROR 1146 (42S02): Table 'database.table' doesn't exist</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check if you're using the correct database:</p>
+                                    <p><code>SHOW DATABASES;</code></p>
+                                    <p>2. Check available tables in the database:</p>
+                                    <p><code>USE database_name; SHOW TABLES;</code></p>
+                                    <p>3. Check for typos in table name or create the table if needed</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Too Many Connections
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">MySQL server has reached the maximum allowed connections</p>
+                                <div class="error-code">ERROR 1040 (HY000): Too many connections</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check current connection limit and used connections:</p>
+                                    <p><code>SHOW VARIABLES LIKE 'max_connections';</code></p>
+                                    <p><code>SHOW STATUS LIKE 'Threads_connected';</code></p>
+                                    <p>2. Increase max_connections in my.cnf:</p>
+                                    <p><code>max_connections = 200</code></p>
+                                    <p>3. Identify and terminate unnecessary connections:</p>
+                                    <p><code>SHOW PROCESSLIST;</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Deadlock Found
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Transaction was rolled back due to a deadlock</p>
+                                <div class="error-code">ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Identify and optimize problematic queries</p>
+                                    <p>2. Add retry logic to your application for deadlock scenarios</p>
+                                    <p>3. Check deadlock information:</p>
+                                    <p><code>SHOW ENGINE INNODB STATUS;</code></p>
+                                    <p>4. Consider reordering operations in transactions to prevent deadlocks</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Moving Magento MySQL errors here -->
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Database Deadlock in Magento
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Database deadlock found when trying to get lock in Magento</p>
+                                <div class="error-code">SQLSTATE[40001]: Serialization failure: 1213 Deadlock found when trying to get lock; try restarting transaction</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check for long-running queries: <code>SHOW PROCESSLIST;</code></p>
+                                    <p>2. Optimize your database with: <code>bin/magento indexer:reindex</code></p>
+                                    <p>3. Consider increasing innodb_buffer_pool_size in MySQL config</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                MySQL Wait Timeout in Magento
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">MySQL server has gone away during Magento operations</p>
+                                <div class="error-code">SQLSTATE[HY000]: General error: 2006 MySQL server has gone away</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Increase wait_timeout and max_allowed_packet in MySQL:</p>
+                                    <p><code>wait_timeout = 600</code></p>
+                                    <p><code>max_allowed_packet = 256M</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PHP Tab Content -->
+                <div id="phpTab" class="tab-content">
+                    <h2>PHP Common Errors</h2>
+                    
+                    <div class="error-grid">
+                        <!-- Existing PHP errors -->
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                PHP Memory Limit in Magento
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Fatal error: Allowed memory size exhausted in Magento operations</p>
+                                <div class="error-code">PHP Fatal error: Allowed memory size of 756M bytes exhausted (tried to allocate 16 bytes)</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Increase PHP memory limit in php.ini for Magento:</p>
+                                    <p><code>memory_limit = 2G</code></p>
+                                    <p>Or for CLI only:</p>
+                                    <p><code>php -d memory_limit=2G bin/magento [command]</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Redis Tab Content (create new) -->
+                <div id="redisTab" class="tab-content">
+                    <h2>Redis Common Errors</h2>
+                    
+                    <div class="error-grid">
+                        <!-- Adding Magento Redis error here -->
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Redis Connection in Magento
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Cannot connect to Redis server from Magento</p>
+                                <div class="error-code">Connection refused to Redis server at 127.0.0.1:6379</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check if Redis is running: <code>systemctl status redis</code></p>
+                                    <p>2. Verify Redis configuration in Magento's env.php</p>
+                                    <p>3. Restart Redis service if needed: <code>systemctl restart redis</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Redis Out of Memory
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Redis server running out of memory</p>
+                                <div class="error-code">ERROR: Out Of Memory allocating 16384 bytes</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Increase maxmemory setting in redis.conf:</p>
+                                    <p><code>maxmemory 1gb</code></p>
+                                    <p>2. Set an eviction policy:</p>
+                                    <p><code>maxmemory-policy allkeys-lru</code></p>
+                                    <p>3. Restart Redis after changes: <code>systemctl restart redis</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MySQL Tab Content -->
+                <div id="mysqlTab" class="tab-content">
+                    <h2>MySQL Common Errors</h2>
+                    
+                    <div class="error-grid">
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Access Denied for User
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">MySQL user authentication error, preventing access to the database</p>
+                                <div class="error-code">ERROR 1045 (28000): Access denied for user 'username'@'localhost' (using password: YES)</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check if username and password are correct</p>
+                                    <p>2. Reset the password if necessary:</p>
+                                    <p><code>ALTER USER 'username'@'localhost' IDENTIFIED BY 'new_password';</code></p>
+                                    <p>3. Verify the user has proper permissions:</p>
+                                    <p><code>SHOW GRANTS FOR 'username'@'localhost';</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Table Doesn't Exist
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Query refers to a table that doesn't exist in the database</p>
+                                <div class="error-code">ERROR 1146 (42S02): Table 'database.table' doesn't exist</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check if you're using the correct database:</p>
+                                    <p><code>SHOW DATABASES;</code></p>
+                                    <p>2. Check available tables in the database:</p>
+                                    <p><code>USE database_name; SHOW TABLES;</code></p>
+                                    <p>3. Check for typos in table name or create the table if needed</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Too Many Connections
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">MySQL server has reached the maximum allowed connections</p>
+                                <div class="error-code">ERROR 1040 (HY000): Too many connections</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check current connection limit and used connections:</p>
+                                    <p><code>SHOW VARIABLES LIKE 'max_connections';</code></p>
+                                    <p><code>SHOW STATUS LIKE 'Threads_connected';</code></p>
+                                    <p>2. Increase max_connections in my.cnf:</p>
+                                    <p><code>max_connections = 200</code></p>
+                                    <p>3. Identify and terminate unnecessary connections:</p>
+                                    <p><code>SHOW PROCESSLIST;</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Deadlock Found
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Transaction was rolled back due to a deadlock</p>
+                                <div class="error-code">ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Identify and optimize problematic queries</p>
+                                    <p>2. Add retry logic to your application for deadlock scenarios</p>
+                                    <p>3. Check deadlock information:</p>
+                                    <p><code>SHOW ENGINE INNODB STATUS;</code></p>
+                                    <p>4. Consider reordering operations in transactions to prevent deadlocks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nginx Tab Content -->
+                <div id="nginxTab" class="tab-content">
+                    <h2>Nginx Common Errors</h2>
+                    
+                    <div class="error-grid">
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                502 Bad Gateway Error
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Nginx returns 502 Bad Gateway when the PHP-FPM upstream server fails to respond correctly</p>
+                                <div class="error-code">2023/10/25 12:34:56 [error] 12345#0: *123 upstream sent too big header while reading response header from upstream, client: 127.0.0.1, server: example.com, request: "GET /path/to/page HTTP/1.1", upstream: "fastcgi://unix:/var/run/php-fpm.sock", host: "example.com"</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Increase the buffer size in your Nginx configuration:</p>
+                                    <p><code>fastcgi_buffers 16 256k;</code></p>
+                                    <p><code>fastcgi_buffer_size 256k;</code></p>
+                                    <p>Add these to your server block in the Nginx configuration file and reload Nginx:</p>
+                                    <p><code>sudo nginx -t && sudo systemctl reload nginx</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                413 Request Entity Too Large
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Nginx limits the size of client request bodies, affecting file uploads</p>
+                                <div class="error-code">2023/10/25 12:34:56 [error] 12345#0: *123 client intended to send too large body: 10485760 bytes, client: 127.0.0.1, request: "POST /upload HTTP/1.1", host: "example.com"</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Increase the maximum allowed body size in Nginx:</p>
+                                    <p><code>client_max_body_size 100M;</code></p>
+                                    <p>This can be added to the http, server, or location context in your Nginx config</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                404 Not Found for PHP Files
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">PHP files are showing 404 errors despite being present</p>
+                                <div class="error-code">2023/10/25 12:34:56 [error] 12345#0: *123 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 127.0.0.1</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Check your fastcgi_param SCRIPT_FILENAME configuration:</p>
+                                    <p><code>fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</code></p>
+                                    <p>Also verify the root directory is correctly set:</p>
+                                    <p><code>root /var/www/html;</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                SSL Certificate Issues
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">SSL handshake failure or certificate errors</p>
+                                <div class="error-code">2023/10/25 12:34:56 [error] 12345#0: *123 SSL_do_handshake() failed (SSL: error:1408F10B:SSL routines:ssl3_get_record:wrong version number) while SSL handshaking to upstream</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check that SSL certificate and key paths are correct:</p>
+                                    <p><code>ssl_certificate /etc/nginx/ssl/certificate.crt;</code></p>
+                                    <p><code>ssl_certificate_key /etc/nginx/ssl/private.key;</code></p>
+                                    <p>2. Ensure certificate is valid and not expired:</p>
+                                    <p><code>openssl x509 -in /etc/nginx/ssl/certificate.crt -text -noout</code></p>
+                                    <p>3. Verify certificate chain is complete</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Varnish Tab Content -->
+                <div id="varnishTab" class="tab-content">
+                    <h2>Varnish Common Errors</h2>
+                    
+                    <div class="error-grid">
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                HTTP Header Size Limits
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Varnish limits on HTTP headers can cause issues with large cookies or headers</p>
+                                <div class="error-code">Message from VCC-compiler:
+Error 400 Bad Request
+Guru meditation:
+XID: 123456
+Varnish cache server</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>Check current header limits:</p>
+                                    <p><code>sudo varnishadm param.show http_max_hdr</code></p>
+                                    <p><code>sudo varnishadm param.show http_req_hdr_len</code></p>
+                                    <p><code>sudo varnishadm param.show http_resp_hdr_len</code></p>
+                                    <p>Increase limits by adding these parameters to your Varnish startup configuration:</p>
+                                    <p><code>-p workspace_backend=2097152</code></p>
+                                    <p><code>-p http_resp_size=1082768</code></p>
+                                    <p><code>-p http_resp_hdr_len=1050000</code></p>
+                                    <p><code>-p workspace_client=2097152</code></p>
+                                    <p><code>-p http_req_size=65536</code></p>
+                                    <p><code>-p http_req_hdr_len=32768</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Backend Fetch Failed
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Varnish cannot connect to or get a response from the backend server</p>
+                                <div class="error-code">Error 503 Backend fetch failed
+Guru meditation:
+XID: 987654
+Varnish cache server</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check if the backend server is running:</p>
+                                    <p><code>systemctl status nginx</code> (or Apache)</p>
+                                    <p>2. Verify backend configuration in Varnish VCL:</p>
+                                    <p><code>backend default { .host = "127.0.0.1"; .port = "8080"; }</code></p>
+                                    <p>3. Increase backend timeout if necessary:</p>
+                                    <p><code>.first_byte_timeout = 300s; # Default is 60s</code></p>
+                                    <p><code>.between_bytes_timeout = 300s;</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Health Check Failed
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Backend server fails Varnish health checks</p>
+                                <div class="error-code">Child (123) said
+Child (123) said Backend "default" is Sick
+Child (123) said Backend "default" Still Sick</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Configure better health checks in your VCL:</p>
+                                    <p><code>.probe = {
+    .url = "/health.php";
+    .timeout = 2s;
+    .interval = 5s;
+    .window = 5;
+    .threshold = 3;
+}</code></p>
+                                    <p>2. Check Varnish logs for specific health check errors:</p>
+                                    <p><code>varnishlog -g raw -q 'Backend_health'</code></p>
+                                    <p>3. Create a simple health check file on your backend server</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                VCL Compilation Failure
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Errors in your VCL configuration prevent Varnish from starting</p>
+                                <div class="error-code">Message from VCC-compiler:
+Expected ';' got '}'
+('input' Line 42 Pos 1)
+  }
+--###--
+Running VCC-compiler failed, exit 1</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Test your VCL syntax before reloading:</p>
+                                    <p><code>varnishd -C -f /etc/varnish/default.vcl</code></p>
+                                    <p>2. Check for syntax errors like missing semicolons, brackets, etc.</p>
+                                    <p>3. Validate that subroutines (vcl_recv, vcl_backend_response, etc.) are properly defined</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Docker Tab Content still using placeholder -->
+                <div id="dockerTab" class="tab-content">
+                    <div class="coming-soon">
+                        <i class="fas fa-tools" style="font-size: 4rem; color: #3498db; margin-bottom: 20px;"></i>
+                        <h2>Docker Errors - Coming Soon</h2>
+                        <p>Docker troubleshooting guide will be available shortly!</p>
+                    </div>
+                </div>
+
+                <!-- Git Tab Content -->
+                <div id="gitTab" class="tab-content">
+                    <h2>Git Common Errors</h2>
+                    
+                    <div class="error-grid">
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Merge Conflict
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Git cannot automatically merge changes</p>
+                                <div class="error-code">CONFLICT (content): Merge conflict in filename.ext
+Automatic merge failed; fix conflicts and then commit the result.</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Open the file with conflicts and look for <<<<<<< HEAD markers</p>
+                                    <p>2. Edit the file to resolve conflicts manually</p>
+                                    <p>3. Remove conflict markers and save the file</p>
+                                    <p>4. Stage the resolved files:</p>
+                                    <p><code>git add filename.ext</code></p>
+                                    <p>5. Complete the merge:</p>
+                                    <p><code>git commit</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Failed to Push Changes
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Git refuses to push changes to remote repository</p>
+                                <div class="error-code">error: failed to push some refs to 'https://github.com/username/repo.git'
+hint: Updates were rejected because the remote contains work that you do not have locally.</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Pull the latest changes first:</p>
+                                    <p><code>git pull origin branch-name</code></p>
+                                    <p>2. Resolve any conflicts if they occur</p>
+                                    <p>3. Try pushing again:</p>
+                                    <p><code>git push origin branch-name</code></p>
+                                    <p>4. Alternative (if you're sure): Force push (use with caution):</p>
+                                    <p><code>git push --force-with-lease origin branch-name</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Detached HEAD State
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Working in detached HEAD state, not on any branch</p>
+                                <div class="error-code">You are in 'detached HEAD' state. You can look around, make experimental changes and commit them...</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>To save your work while in detached HEAD state:</p>
+                                    <p>1. Create a new branch at current position:</p>
+                                    <p><code>git checkout -b new-branch-name</code></p>
+                                    <p>2. Or to return to a branch without saving work:</p>
+                                    <p><code>git checkout branch-name</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Fatal: Not a Git Repository
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Attempting to use Git commands outside a Git repository</p>
+                                <div class="error-code">fatal: not a git repository (or any of the parent directories): .git</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Navigate to your Git repository directory</p>
+                                    <p>2. Or initialize a new Git repository:</p>
+                                    <p><code>git init</code></p>
+                                    <p>3. Or clone an existing repository:</p>
+                                    <p><code>git clone repository-url</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Git Errors -->
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Cannot Delete Branch
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Unable to delete a branch due to unmerged changes</p>
+                                <div class="error-code">error: The branch 'branch-name' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D branch-name'.</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check if the branch has unmerged commits:</p>
+                                    <p><code>git log main..branch-name --oneline</code></p>
+                                    <p>2. If you're sure you want to delete the branch:</p>
+                                    <p><code>git branch -D branch-name</code></p>
+                                    <p>3. To delete remote branch (if needed):</p>
+                                    <p><code>git push origin --delete branch-name</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Large File Rejection
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Git refuses to push because file exceeds GitHub's size limit</p>
+                                <div class="error-code">remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+remote: error: Trace: 08b7c5a3233e4a87d007f63f32e94f72
+remote: error: See http://git.io/iEPt8g for more information.
+remote: error: File large-file.zip is 123.45 MB; this exceeds GitHub's file size limit of 100.00 MB</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Remove the large file from your repository:</p>
+                                    <p><code>git rm --cached large-file.zip</code></p>
+                                    <p>2. Commit the removal:</p>
+                                    <p><code>git commit -m "Remove large file"</code></p>
+                                    <p>3. Consider using Git LFS for large files:</p>
+                                    <p><code>git lfs install</code></p>
+                                    <p><code>git lfs track "*.zip"</code></p>
+                                    <p><code>git add .gitattributes</code></p>
+                                    <p><code>git add large-file.zip</code></p>
+                                    <p><code>git commit -m "Add large file via Git LFS"</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Authentication Failed
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Git cannot authenticate with the remote repository</p>
+                                <div class="error-code">remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/username/repo.git/'</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. Check your credentials are correct</p>
+                                    <p>2. For GitHub, use a personal access token instead of password:</p>
+                                    <p>   - Go to GitHub > Settings > Developer Settings > Personal Access Tokens</p>
+                                    <p>   - Generate a new token with appropriate permissions</p>
+                                    <p>   - Use the token as your password when Git prompts you</p>
+                                    <p>3. Set up SSH authentication:</p>
+                                    <p><code>ssh-keygen -t ed25519 -C "your_email@example.com"</code></p>
+                                    <p><code>cat ~/.ssh/id_ed25519.pub</code> (add this to GitHub/GitLab)</p>
+                                    <p>4. Update remote URL to use SSH:</p>
+                                    <p><code>git remote set-url origin git@github.com:username/repo.git</code></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="error-card">
+                            <div class="error-header">
+                                <i class="fas fa-exclamation-circle"></i>
+                                Undo Last Commit
+                            </div>
+                            <div class="error-body">
+                                <p class="error-description">Need to undo the last commit but preserve the changes</p>
+                                <div class="error-code">User wants to undo a commit that has already been pushed</div>
+                                <div class="solution">
+                                    <div class="solution-header"><i class="fas fa-wrench"></i> Solution</div>
+                                    <p>1. To undo last commit but keep changes staged:</p>
+                                    <p><code>git reset --soft HEAD~1</code></p>
+                                    <p>2. To undo last commit and unstage changes:</p>
+                                    <p><code>git reset HEAD~1</code></p>
+                                    <p>3. To completely discard last commit and changes:</p>
+                                    <p><code>git reset --hard HEAD~1</code></p>
+                                    <p>4. If you've already pushed, create a revert commit:</p>
+                                    <p><code>git revert HEAD</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/include.js"></script>
+    <script src="../js/command-copy.js"></script>
+    <script src="../script.js"></script>
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Hide all tab contents
+                    tabContents.forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    
+                    // Deactivate all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Activate the clicked button and tab
+                    this.classList.add('active');
+                    document.getElementById(tabId + 'Tab').classList.add('active');
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const errorCards = document.querySelectorAll('.error-card');
+                    
+                    errorCards.forEach(card => {
+                        const text = card.textContent.toLowerCase();
+                        if (text.includes(searchTerm)) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+            
+            // Hide loading overlay
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            if (loadingOverlay) {
+                setTimeout(() => {
+                    loadingOverlay.classList.add('hidden');
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
