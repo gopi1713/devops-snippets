@@ -7,3 +7,6 @@ RewriteRule ^(.*)$ $1.html [NC,L]
 # Redirect index.html to root directory
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
 RewriteRule ^index\.html$ / [R=301,L]
+
+# Prevent directory listings
+Options -Indexes
