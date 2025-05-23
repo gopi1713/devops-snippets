@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function() {
 // Function to initialize sidebar controls after sidebar is loaded
 function initSidebarControls() {
     const sidebar = document.getElementById('mainSidebar');
-    const toggleBtn = document.getElementById('toggleSidebar');
     const mainContent = document.querySelector('main');
     
     if (!sidebar) {
@@ -94,11 +93,12 @@ function initSidebarControls() {
     function resetTimer() {
         clearTimeout(sidebarTimer);
         
-        // Use consistent 2 second delay for all pages
-        sidebarTimer = setTimeout(collapseSidebar, 2000); // Always 2 seconds
+        // Reduce timeout to ensure it's exactly 2 seconds
+        sidebarTimer = setTimeout(collapseSidebar, 2000); // Strict 2 seconds
     }
     
     // Initialize the timer immediately for all pages
+    // Call directly rather than waiting for any events
     resetTimer();
     
     // Track mouse movement over document to reveal sidebar
@@ -107,26 +107,13 @@ function initSidebarControls() {
             // Show sidebar when mouse is near the left edge
             showSidebar();
         } else {
-            resetTimer();
+            // Only reset the timer if the sidebar is expanded
+            // This prevents resetting during normal mouse movement
+            if (!sidebar.classList.contains('collapsed')) {
+                resetTimer();
+            }
         }
     });
-    
-    // Toggle button click handler
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', function() {
-            sidebar.classList.toggle('collapsed');
-            
-            // Adjust main content margin
-            if (mainContent) {
-                if (sidebar.classList.contains('collapsed')) {
-                    mainContent.style.marginLeft = '50px';
-                } else {
-                    mainContent.style.marginLeft = '250px';
-                    resetTimer();
-                }
-            }
-        });
-    }
     
     // Prevent auto-hide when mouse is over the sidebar
     sidebar.addEventListener('mouseenter', function() {
