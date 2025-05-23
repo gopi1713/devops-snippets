@@ -226,12 +226,18 @@ main {
     color: #7f8c8d;
 }
 
+/* Footer styles */
 footer {
     width: 100%;
     text-align: center;
-    padding: 2rem 0;
+    padding: 0.8rem 0; /* Reduced from 2rem */
     background-color: #2c3e50;
     color: white;
+    font-size: 0.9rem; /* Smaller font size */
+}
+
+footer p {
+    margin: 0;
 }
 
 footer a {
