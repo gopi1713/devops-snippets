@@ -13,32 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 html = html.replace(/ROOT_PATH/g, rootPath);
                 html = html.replace(`${activePage}_ACTIVE`, 'active');
                 
-                // Set page title and icon
-                const pageTitles = {
-                    'HOME': 'Home',
-                    'DOCKER': 'Docker Commands',
-                    'GIT': 'Git Commands',
-                    'MAGENTO': 'Magento Commands',
-                    'MYSQL': 'MySQL Commands',
-                    'OPENSEARCH': 'OpenSearch Commands',
-                    'REDIS': 'Redis Commands',
-                    'PACKAGES': 'Package Installation'
-                };
-                
-                const pageIcons = {
-                    'HOME': 'fas fa-home',
-                    'DOCKER': 'fab fa-docker',
-                    'GIT': 'fab fa-git-alt',
-                    'MAGENTO': 'fas fa-shopping-cart',
-                    'MYSQL': 'fas fa-database',
-                    'OPENSEARCH': 'fas fa-search',
-                    'REDIS': 'fas fa-server',
-                    'PACKAGES': 'fas fa-box'
-                };
-                
-                html = html.replace('PAGE_NAME', pageTitles[activePage] || 'Commands');
-                html = html.replace('PAGE_ICON', pageIcons[activePage] || 'fas fa-code');
-                
                 // Remove all other active placeholders
                 const pages = ['HOME', 'DOCKER', 'GIT', 'MAGENTO', 'MYSQL', 'OPENSEARCH', 'REDIS', 'PACKAGES'];
                 pages.forEach(page => {
@@ -48,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
                 
                 element.innerHTML = html;
+                
+                // Initialize sidebar controls AFTER sidebar is loaded
+                initSidebarControls();
                 
                 // Reattach event listener for sidebar toggle
                 const toggleBtn = element.querySelector('#toggleSidebar');
@@ -65,3 +42,78 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 });
+
+// Function to initialize sidebar controls after sidebar is loaded
+function initSidebarControls() {
+    const sidebar = document.getElementById('mainSidebar');
+    const toggleBtn = document.getElementById('toggleSidebar');
+    
+    if (!sidebar) {
+        console.warn('Sidebar element not found. Auto-hide functionality disabled.');
+        return;
+    }
+    
+ 
+    
+    let sidebarTimer;
+    let isMouseOverSidebar = false;
+    
+    // Function to collapse the sidebar
+    function collapseSidebar() {
+        if (!isMouseOverSidebar && !sidebar.classList.contains('collapsed')) {
+            sidebar.classList.add('collapsed');
+        }
+    }
+    
+    // Function to show the sidebar
+    function showSidebar() {
+        sidebar.classList.remove('collapsed');
+        resetTimer();
+    }
+    
+    // Function to reset the auto-hide timer
+    function resetTimer() {
+        clearTimeout(sidebarTimer);
+        sidebarTimer = setTimeout(collapseSidebar, 2000); // 2 seconds
+    }
+    
+    // Initialize the timer when page loads
+    resetTimer();
+    
+    // Track mouse movement over document to reveal sidebar
+    document.addEventListener('mousemove', function(e) {
+        if (sidebar.classList.contains('collapsed') && e.clientX < 50) {
+            // Show sidebar when mouse is near the left edge
+            showSidebar();
+        } else {
+            resetTimer();
+        }
+    });
+    
+    // Toggle button click handler
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('collapsed');
+            // If sidebar is now visible, reset timer
+            if (!sidebar.classList.contains('collapsed')) {
+                resetTimer();
+            }
+        });
+    }
+    
+    // Prevent auto-hide when mouse is over the sidebar
+    sidebar.addEventListener('mouseenter', function() {
+        isMouseOverSidebar = true;
+        showSidebar(); // Ensure sidebar is visible
+    });
+    
+    sidebar.addEventListener('mouseleave', function() {
+        isMouseOverSidebar = false;
+        resetTimer(); // Start the timer again
+    });
+    
+    // Don't auto-hide when interacting with elements
+    document.addEventListener('click', resetTimer);
+    document.addEventListener('keydown', resetTimer);
+    document.addEventListener('scroll', resetTimer);
+}
